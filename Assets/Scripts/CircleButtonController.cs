@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CircleButtonController : MonoBehaviour
+public class CircleButtonController: MonoBehaviour
 {
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
