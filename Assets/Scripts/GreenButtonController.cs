@@ -8,6 +8,7 @@ public class GreenButtonController : MonoBehaviour
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
+    public ARTapToPlaceObject placementController; // Link to ArTap to place
 
     private Image activeImage;
     private bool buttonState = false;
@@ -16,6 +17,10 @@ public class GreenButtonController : MonoBehaviour
     {
         activeImage = GetComponent<Image>();
 
+        if (placementController == null)
+        {
+            Debug.LogError("ARTapToPlaceObject reference not set!");
+        }
         // Ensure the reference to the PlacementIndicator is set
         if (placementIndicator == null)
         {
@@ -43,6 +48,7 @@ public class GreenButtonController : MonoBehaviour
 
             // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
+            placementController.SetObjectToSpawn(placementController.greenObject);
         }
         else
         {
@@ -52,7 +58,7 @@ public class GreenButtonController : MonoBehaviour
             }
 
             placementIndicator.SetActive(false);
-
+            placementController.SetObjectToSpawn(null);
         }
 
 
