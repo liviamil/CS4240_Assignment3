@@ -8,7 +8,7 @@ public class GreenButtonController : MonoBehaviour
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
-    public ARTapToPlaceObject placementController; // Link to ArTap to place
+    public ARTapToPlaceObject placementController; // Link to ARTapToPlaceObject
 
     private Image activeImage;
     private bool buttonState = false;
@@ -60,7 +60,5 @@ public class GreenButtonController : MonoBehaviour
             placementIndicator.SetActive(false);
             placementController.SetObjectToSpawn(null);
         }
-
-
     }
 }
