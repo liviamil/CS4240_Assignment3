@@ -48,7 +48,7 @@ public class GreenButtonController : MonoBehaviour
 
             // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
-            placementController.SetObject(placementController.greenObject); // Set the object to spawn
+            placementController.ActivateGreen();
         }
         else
         {
@@ -57,8 +57,20 @@ public class GreenButtonController : MonoBehaviour
                 activeImage.sprite = originalImage;
             }
 
-            placementIndicator.SetActive(false);
-            placementController.SetObject(null); // Set the object to null
+            // Check if any of the furniture buttons are still active
+            if (!AnyFurnitureButtonActive())
+            {
+                // Deactivate the PlacementIndicator GameObject
+                placementIndicator.SetActive(false);
+            }
         }
+    }
+
+    // Function to check if any furniture button is active
+    private bool AnyFurnitureButtonActive()
+    {
+        // Check if any of the furniture buttons are active
+        // You can add additional checks here if you have more furniture buttons
+        return buttonState;
     }
 }

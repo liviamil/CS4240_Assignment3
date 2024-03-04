@@ -6,14 +6,14 @@ using UnityEngine.XR.ARSubsystems;
 public class ARTapToPlaceObject : MonoBehaviour
 {
     public GameObject placementIndicator;
-    public GameObject objToSpawn;
+    private GameObject activeObject;
     public GameObject greenObject;
     public GameObject greyObject;
     public GameObject rectObject;
     public GameObject circleObject;
 
     private Pose PlacementPose; // Stores position + rotation data
-    private ARRaycastManager raycastManager;
+    public ARRaycastManager raycastManager;
     private bool placementPoseIsValid = false;
 
     private void Start()
@@ -33,17 +33,13 @@ public class ARTapToPlaceObject : MonoBehaviour
         }
     }
 
-    public void SetObject(GameObject obj) {
-        objToSpawn = obj;
-    }
-
     /**
      * Based on where we are pointing towards, is there any planes. 
      */
     void UpdatePlacementPose()
     {
         // convert viewport position to screen position. Center of screen may not be (0.5, 0.5) since different phones have different sizes
-        var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f)); 
+        var screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f)); 
 
         // shoot a ray out from middle of screen to see if it hits anything
         var hits = new List<ARRaycastHit>();
@@ -75,13 +71,52 @@ public class ARTapToPlaceObject : MonoBehaviour
         }
     }
 
-
     private void PlaceObject()
     {
-        /**
-         * ASSIGNMENT 3 HINT
-         * Can we set the obj to spawn based on the furniture we choose? That way we can spawn the furniture selected during runtime
-         */
-        Instantiate(objToSpawn, PlacementPose.position, PlacementPose.rotation);
+        if (activeObject != null)
+        {
+            Instantiate(activeObject, PlacementPose.position, PlacementPose.rotation);
+        }
     }
+
+    public void ActivateRect()
+    {
+        DeactivateAllObjects();
+        rectObject.SetActive(true);
+        activeObject = rectObject;
+    }
+
+    public void ActivateCircle()
+    {
+        DeactivateAllObjects();
+        circleObject.SetActive(true);
+        activeObject = circleObject;
+    }
+
+    public void ActivateGrey()
+    {
+        DeactivateAllObjects();
+        greyObject.SetActive(true);
+        activeObject = greyObject;
+    }
+
+    public void ActivateGreen()
+    {
+        DeactivateAllObjects();
+        greenObject.SetActive(true);
+        activeObject = greenObject;
+    }
+
+    private void DeactivateAllObjects()
+    {
+        if (rectObject != null)
+            rectObject.SetActive(false);
+        if (circleObject != null)
+            circleObject.SetActive(false);
+        if (greyObject != null)
+            greyObject.SetActive(false);
+        if (greenObject != null)
+            greenObject.SetActive(false);
+    }
+
 }

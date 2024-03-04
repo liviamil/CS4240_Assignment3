@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CircleButtonController: MonoBehaviour
+public class CircleButtonController : MonoBehaviour
 {
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
+    public ARTapToPlaceObject placementController; // Link to ARTapToPlaceObject
 
     private Image activeImage;
     private bool buttonState = false;
@@ -16,6 +17,10 @@ public class CircleButtonController: MonoBehaviour
     {
         activeImage = GetComponent<Image>();
 
+        if (placementController == null)
+        {
+            Debug.LogError("ARTapToPlaceObject reference not set!");
+        }
         // Ensure the reference to the PlacementIndicator is set
         if (placementIndicator == null)
         {
@@ -33,7 +38,7 @@ public class CircleButtonController: MonoBehaviour
     {
         // Toggle button state
         buttonState = !buttonState;
-
+        
         if (buttonState)
         {
             if (activeImage != null && newImage != null)
@@ -43,6 +48,7 @@ public class CircleButtonController: MonoBehaviour
 
             // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
+            placementController.ActivateCircle();
         }
         else
         {
@@ -51,10 +57,20 @@ public class CircleButtonController: MonoBehaviour
                 activeImage.sprite = originalImage;
             }
 
-            placementIndicator.SetActive(false);
-
+            // Check if any of the furniture buttons are still active
+            if (!AnyFurnitureButtonActive())
+            {
+                // Deactivate the PlacementIndicator GameObject
+                placementIndicator.SetActive(false);
+            }
         }
+    }
 
-       
+    // Function to check if any furniture button is active
+    private bool AnyFurnitureButtonActive()
+    {
+        // Check if any of the furniture buttons are active
+        // You can add additional checks here if you have more furniture buttons
+        return buttonState;
     }
 }

@@ -8,6 +8,7 @@ public class RectButtonController : MonoBehaviour
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
+    public ARTapToPlaceObject placementController; // Link to ARTapToPlaceObject
 
     private Image activeImage;
     private bool buttonState = false;
@@ -16,6 +17,10 @@ public class RectButtonController : MonoBehaviour
     {
         activeImage = GetComponent<Image>();
 
+        if (placementController == null)
+        {
+            Debug.LogError("ARTapToPlaceObject reference not set!");
+        }
         // Ensure the reference to the PlacementIndicator is set
         if (placementIndicator == null)
         {
@@ -43,6 +48,7 @@ public class RectButtonController : MonoBehaviour
 
             // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
+            placementController.ActivateRect();
         }
         else
         {
@@ -51,10 +57,20 @@ public class RectButtonController : MonoBehaviour
                 activeImage.sprite = originalImage;
             }
 
-            placementIndicator.SetActive(false);
-
+            // Check if any of the furniture buttons are still active
+            if (!AnyFurnitureButtonActive())
+            {
+                // Deactivate the PlacementIndicator GameObject
+                placementIndicator.SetActive(false);
+            }
         }
+    }
 
-
+    // Function to check if any furniture button is active
+    private bool AnyFurnitureButtonActive()
+    {
+        // Check if any of the furniture buttons are active
+        // You can add additional checks here if you have more furniture buttons
+        return buttonState;
     }
 }
