@@ -8,7 +8,6 @@ public class GreyButtonController : MonoBehaviour
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
-    public ARTapToPlaceObject placementController; // Reference to ARTapToPlaceObject script
 
     private Image activeImage;
     private bool buttonState = false;
@@ -44,9 +43,6 @@ public class GreyButtonController : MonoBehaviour
 
             // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
-
-            // Set the object to spawn in ARTapToPlaceObject script
-            placementController.SetObjectToSpawn(placementController.greyObject);
         }
         else
         {
@@ -57,8 +53,8 @@ public class GreyButtonController : MonoBehaviour
 
             placementIndicator.SetActive(false);
 
-            // Set the object to spawn to null in ARTapToPlaceObject script
-            placementController.SetObjectToSpawn(null);
         }
+
+
     }
 }
