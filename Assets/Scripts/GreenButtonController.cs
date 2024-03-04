@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class GreenButtonController : MonoBehaviour
 {
     public GameObject placementIndicator;
-    public Sprite newImage;
-    public Sprite originalImage;
-    public ARTapToPlaceObject placementController;
+    public Sprite newImage; // New image for Button
+    public Sprite originalImage; // Original image for Button
+    public ARTapToPlaceObject placementController; // Link to ARTapToPlaceObject
 
     private Image activeImage;
     private bool buttonState = false;
@@ -21,19 +21,22 @@ public class GreenButtonController : MonoBehaviour
         {
             Debug.LogError("ARTapToPlaceObject reference not set!");
         }
-
+        // Ensure the reference to the PlacementIndicator is set
         if (placementIndicator == null)
         {
             Debug.LogError("PlacementIndicator reference is not set!");
         }
         else
         {
+            // Deactivate the PlacementIndicator GameObject initially
             placementIndicator.SetActive(false);
         }
     }
 
+    // Function to be called when the button is clicked
     public void OnGreenButtonClick()
     {
+        // Toggle button state
         buttonState = !buttonState;
 
         if (buttonState)
@@ -43,6 +46,7 @@ public class GreenButtonController : MonoBehaviour
                 activeImage.sprite = newImage;
             }
 
+            // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
             placementController.SetObjectToSpawn(placementController.greenObject);
         }

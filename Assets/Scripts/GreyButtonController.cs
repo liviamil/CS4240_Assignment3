@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class GreyButtonController : MonoBehaviour
 {
     public GameObject placementIndicator;
-    public Sprite newImage;
-    public Sprite originalImage;
-    public ARTapToPlaceObject placementController;
+    public Sprite newImage; // New image for Button
+    public Sprite originalImage; // Original image for Button
+    public ARTapToPlaceObject placementController; // Reference to ARTapToPlaceObject script
 
     private Image activeImage;
     private bool buttonState = false;
@@ -17,21 +17,19 @@ public class GreyButtonController : MonoBehaviour
     {
         activeImage = GetComponent<Image>();
 
-        if (placementController == null)
-        {
-            Debug.LogError("ARTapToPlaceObject reference not set!");
-        }
-
+        // Ensure the reference to the PlacementIndicator is set
         if (placementIndicator == null)
         {
             Debug.LogError("PlacementIndicator reference is not set!");
         }
         else
         {
+            // Deactivate the PlacementIndicator GameObject initially
             placementIndicator.SetActive(false);
         }
     }
 
+    // Function to be called when the button is clicked
     public void OnGreyButtonClick()
     {
         // Toggle button state
@@ -47,16 +45,8 @@ public class GreyButtonController : MonoBehaviour
             // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
 
-            // Check if placementController is not null before accessing it
-            if (placementController != null)
-            {
-                // Set the object to spawn in ARTapToPlaceObject script
-                placementController.SetObjectToSpawn(placementController.greyObject);
-            }
-            else
-            {
-                Debug.LogError("placementController is not assigned in GreyButtonController!");
-            }
+            // Set the object to spawn in ARTapToPlaceObject script
+            placementController.SetObjectToSpawn(placementController.greyObject);
         }
         else
         {
@@ -67,15 +57,8 @@ public class GreyButtonController : MonoBehaviour
 
             placementIndicator.SetActive(false);
 
-            if (placementController != null)
-            {
-                // Set the object to spawn to null in ARTapToPlaceObject script
-                placementController.SetObjectToSpawn(null);
-            }
-            else
-            {
-                Debug.LogError("placementController is not assigned in GreyButtonController!");
-            }
+            // Set the object to spawn to null in ARTapToPlaceObject script
+            placementController.SetObjectToSpawn(null);
         }
     }
 }
