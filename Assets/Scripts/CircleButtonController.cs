@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class CircleButtonController : MonoBehaviour
 {
     public GameObject placementIndicator;
-    public Sprite newImage; // New image for Button
-    public Sprite originalImage; // Original image for Button
-    public ARTapToPlaceObject placementController; // Reference to ARTapToPlaceObject script
+    public Sprite newImage;
+    public Sprite originalImage;
+    public ARTapToPlaceObject placementController;
 
     private Image activeImage;
     private bool buttonState = false;
@@ -17,22 +17,23 @@ public class CircleButtonController : MonoBehaviour
     {
         activeImage = GetComponent<Image>();
 
-        // Ensure the reference to the PlacementIndicator is set
+        if (placementController == null)
+        {
+            Debug.LogError("ARTapToPlaceObject reference not set!");
+        }
+
         if (placementIndicator == null)
         {
             Debug.LogError("PlacementIndicator reference is not set!");
         }
         else
         {
-            // Deactivate the PlacementIndicator GameObject initially
             placementIndicator.SetActive(false);
         }
     }
 
-    // Function to be called when the button is clicked
     public void OnCircleButtonClick()
     {
-        // Toggle button state
         buttonState = !buttonState;
 
         if (buttonState)
@@ -42,10 +43,7 @@ public class CircleButtonController : MonoBehaviour
                 activeImage.sprite = newImage;
             }
 
-            // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
-
-            // Set the object to spawn in ARTapToPlaceObject script
             placementController.SetObjectToSpawn(placementController.circleObject);
         }
         else
@@ -56,8 +54,6 @@ public class CircleButtonController : MonoBehaviour
             }
 
             placementIndicator.SetActive(false);
-
-            // Set the object to spawn to null in ARTapToPlaceObject script
             placementController.SetObjectToSpawn(null);
         }
     }
