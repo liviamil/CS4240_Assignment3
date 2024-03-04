@@ -7,6 +7,10 @@ public class ARTapToPlaceObject : MonoBehaviour
 {
     public GameObject placementIndicator;
     public GameObject objToSpawn;
+    public GameObject greenObject;
+    public GameObject greyObject;
+    public GameObject rectObject;
+    public GameObject circleObject;
 
     private Pose PlacementPose; // Stores position + rotation data
     private ARRaycastManager raycastManager;
