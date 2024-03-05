@@ -50,20 +50,24 @@ public class ARTapToPlaceObject : MonoBehaviour
     public void ActivateRect()
     {
         // Your existing code
+        Debug.Log("Rect is activated");
     }
 
     public void ActivateCircle()
     {
         // Your existing code
+        Debug.Log("Circle is activated");
     }
 
     public void ActivateGrey()
     {
         // Your existing code
+        Debug.Log("Grey is activated");
     }
 
     public void ActivateGreen()
     {
         // Your existing code
+        Debug.Log("Green is activated");
     }
 }
