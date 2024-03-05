@@ -22,15 +22,15 @@ public class CircleButtonController : MonoBehaviour
             Debug.LogError("ARTapToPlaceObject reference not set!");
         }
         // Ensure the reference to the PlacementIndicator is set
-        // if (placementIndicator == null)
-        // {
-        //     Debug.LogError("PlacementIndicator reference is not set!");
-        // }
-        // else
-        // {
-        //     // Deactivate the PlacementIndicator GameObject initially
-        //     placementIndicator.SetActive(false);
-        // }
+        if (placementIndicator == null)
+        {
+            Debug.LogError("PlacementIndicator reference is not set!");
+        }
+        else
+        {
+            // Deactivate the PlacementIndicator GameObject initially
+            placementIndicator.SetActive(false);
+        }
     }
 
     // Function to be called when the button is clicked
@@ -38,7 +38,7 @@ public class CircleButtonController : MonoBehaviour
     {
         // Toggle button state
         buttonState = !buttonState;
-        
+
         if (buttonState)
         {
             if (activeImage != null && newImage != null)
@@ -47,7 +47,7 @@ public class CircleButtonController : MonoBehaviour
             }
 
             // Activate the PlacementIndicator GameObject
-            // placementIndicator.SetActive(true);
+            placementIndicator.SetActive(true);
             placementController.ActivateCircle();
         }
         else
@@ -58,11 +58,11 @@ public class CircleButtonController : MonoBehaviour
             }
 
             // Check if any of the furniture buttons are still active
-            // if (!AnyFurnitureButtonActive())
-            // {
-            //     // Deactivate the PlacementIndicator GameObject
-            //     placementIndicator.SetActive(false);
-            // }
+            if (!AnyFurnitureButtonActive())
+            {
+                // Deactivate the PlacementIndicator GameObject
+                placementIndicator.SetActive(false);
+            }
         }
     }
 
