@@ -743,6 +743,7 @@ GameObject:
   - component: {fileID: 563057024}
   - component: {fileID: 563057027}
   - component: {fileID: 563057026}
+  - component: {fileID: 563057028}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -815,6 +816,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563057023}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &563057028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563057023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd86f66afe45e0945a01b37fa2816ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placementIndicator: {fileID: 808349659}
 --- !u!1 &668730088
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +981,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808349660}
-  - component: {fileID: 808349661}
   m_Layer: 0
   m_Name: PlacementIndicator
   m_TagString: Untagged
@@ -991,19 +1004,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &808349661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808349659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd86f66afe45e0945a01b37fa2816ae5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  placementIndicator: {fileID: 563057023}
 --- !u!1 &885362080
 GameObject:
   m_ObjectHideFlags: 0
