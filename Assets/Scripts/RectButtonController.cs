@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class RectButtonController : MonoBehaviour
 {
+    public GameObject rectPrefab;
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
@@ -48,7 +49,7 @@ public class RectButtonController : MonoBehaviour
 
             // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
-            placementController.ActivateRect();
+            placementController.SetObjectToSpawn(rectPrefab);
         }
         else
         {

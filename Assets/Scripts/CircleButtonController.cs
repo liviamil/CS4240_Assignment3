@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CircleButtonController : MonoBehaviour
 {
+    public GameObject circlePrefab; // Assign in inspector
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
@@ -48,7 +49,7 @@ public class CircleButtonController : MonoBehaviour
 
             // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
-            placementController.ActivateCircle();
+            placementController.SetObjectToSpawn(circlePrefab);
         }
         else
         {

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GreenButtonController : MonoBehaviour
 {
+    public GameObject greenPrefab;
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
@@ -48,7 +49,7 @@ public class GreenButtonController : MonoBehaviour
 
             // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
-            placementController.ActivateGreen();
+            placementController.SetObjectToSpawn(greenPrefab);
         }
         else
         {

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GreyButtonController : MonoBehaviour
 {
+    public GameObject greyPrefab;
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
@@ -22,15 +23,15 @@ public class GreyButtonController : MonoBehaviour
             Debug.LogError("ARTapToPlaceObject reference not set!");
         }
         // Ensure the reference to the PlacementIndicator is set
-        // if (placementIndicator == null)
-        // {
-        //     Debug.LogError("PlacementIndicator reference is not set!");
-        // }
-        // else
-        // {
-        //     // Deactivate the PlacementIndicator GameObject initially
-        //     placementIndicator.SetActive(false);
-        // }
+        if (placementIndicator == null)
+        {
+            Debug.LogError("PlacementIndicator reference is not set!");
+        }
+        else
+        {
+            // Deactivate the PlacementIndicator GameObject initially
+            placementIndicator.SetActive(false);
+        }
     }
 
     // Function to be called when the button is clicked
@@ -48,7 +49,7 @@ public class GreyButtonController : MonoBehaviour
 
             // Activate the PlacementIndicator GameObject
             placementIndicator.SetActive(true);
-            placementController.ActivateGrey();
+            placementController.SetObjectToSpawn(greyPrefab);
         }
         else
         {

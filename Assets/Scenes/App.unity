@@ -1204,6 +1204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1329aea4d4d9d374389ce51cabb83621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectPrefab: {fileID: 5713587096914415375, guid: d7036389f4d527a4e94d87152f88c734, type: 3}
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: 5118cb38f8c9c8f42a9f5141577be5eb, type: 3}
   originalImage: {fileID: 21300000, guid: 3c76d3303794c2148bcce32b134ccd3f, type: 3}
@@ -1490,6 +1491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e314d139ef67841b3e698906fa432e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  circlePrefab: {fileID: 3279833634629090233, guid: b8408f6e0826a3d44b0bbea59c4365b1, type: 3}
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: 3f734e927754d7244b3166f8d4afa6f9, type: 3}
   originalImage: {fileID: 21300000, guid: 13975d5b1ffa9c24ea74adf5e7e40a14, type: 3}
@@ -2168,6 +2170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aadea6c205d1cb4481c3bd51d5dbd62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  greyPrefab: {fileID: 869411690289362311, guid: 0ac8c27a59393674c83f1f8cb9da5ae0, type: 3}
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: cd56747f88bb7a24aa356640814e3745, type: 3}
   originalImage: {fileID: 21300000, guid: 1a0320bc9c2648140897ac6dcf903fdf, type: 3}
@@ -2599,11 +2602,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce07263a1f2a4b34da33c471a02c4a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greenObject: {fileID: 7006322925578568081, guid: cd6e7177ee92a904981bc699ddaa87e8, type: 3}
-  greyObject: {fileID: 869411690289362311, guid: 0ac8c27a59393674c83f1f8cb9da5ae0, type: 3}
-  rectObject: {fileID: 5713587096914415375, guid: d7036389f4d527a4e94d87152f88c734, type: 3}
-  circleObject: {fileID: 3279833634629090233, guid: b8408f6e0826a3d44b0bbea59c4365b1, type: 3}
-  raycastManager: {fileID: 668730091}
+  placementIndicator: {fileID: 808349659}
+  rectPrefab: {fileID: 5713587096914415375, guid: d7036389f4d527a4e94d87152f88c734, type: 3}
+  greenPrefab: {fileID: 7006322925578568081, guid: cd6e7177ee92a904981bc699ddaa87e8, type: 3}
+  circlePrefab: {fileID: 3279833634629090233, guid: b8408f6e0826a3d44b0bbea59c4365b1, type: 3}
+  greyPrefab: {fileID: 869411690289362311, guid: 0ac8c27a59393674c83f1f8cb9da5ae0, type: 3}
 --- !u!4 &1884275635
 Transform:
   m_ObjectHideFlags: 0
@@ -2766,6 +2769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a621443cf5f97488213d17cf7afd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  greenPrefab: {fileID: 7006322925578568081, guid: cd6e7177ee92a904981bc699ddaa87e8, type: 3}
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: a1eabf8ef5d9272428eab7514744cd80, type: 3}
   originalImage: {fileID: 21300000, guid: 5762a3891968676409c781f8c151c2ba, type: 3}

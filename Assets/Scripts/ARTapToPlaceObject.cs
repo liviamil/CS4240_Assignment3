@@ -5,10 +5,8 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARTapToPlaceObject : MonoBehaviour
 {
-    public GameObject greenObject;
-    public GameObject greyObject;
-    public GameObject rectObject;
-    public GameObject circleObject;
+    public GameObject placementIndicator;
+    private GameObject objToSpawn;
 
     private Pose PlacementPose; 
     public ARRaycastManager raycastManager;
@@ -42,6 +40,11 @@ public class ARTapToPlaceObject : MonoBehaviour
         }
     }
 
+    public void SetObjectToSpawn(GameObject prefab)
+    {
+        objToSpawn = prefab;
+    }
+
     private void PlaceObject()
     {
         // Your existing code to place the object
@@ -50,24 +53,21 @@ public class ARTapToPlaceObject : MonoBehaviour
     public void ActivateRect()
     {
         // Your existing code
-        Debug.Log("Rect is activated");
+        
     }
 
     public void ActivateCircle()
     {
         // Your existing code
-        Debug.Log("Circle is activated");
     }
 
     public void ActivateGrey()
     {
         // Your existing code
-        Debug.Log("Grey is activated");
     }
 
     public void ActivateGreen()
     {
         // Your existing code
-        Debug.Log("Green is activated");
     }
 }
