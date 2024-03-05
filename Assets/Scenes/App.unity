@@ -967,6 +967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808349660}
+  - component: {fileID: 808349661}
   m_Layer: 0
   m_Name: PlacementIndicator
   m_TagString: Untagged
@@ -990,6 +991,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &808349661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808349659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd86f66afe45e0945a01b37fa2816ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placementIndicator: {fileID: 563057023}
 --- !u!1 &885362080
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,7 +2599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce07263a1f2a4b34da33c471a02c4a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementIndicator: {fileID: 808349659}
   greenObject: {fileID: 7006322925578568081, guid: cd6e7177ee92a904981bc699ddaa87e8, type: 3}
   greyObject: {fileID: 869411690289362311, guid: 0ac8c27a59393674c83f1f8cb9da5ae0, type: 3}
   rectObject: {fileID: 5713587096914415375, guid: d7036389f4d527a4e94d87152f88c734, type: 3}

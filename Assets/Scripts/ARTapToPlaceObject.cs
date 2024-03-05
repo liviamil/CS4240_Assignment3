@@ -5,14 +5,12 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARTapToPlaceObject : MonoBehaviour
 {
-    public GameObject placementIndicator;
-    private GameObject activeObject;
     public GameObject greenObject;
     public GameObject greyObject;
     public GameObject rectObject;
     public GameObject circleObject;
 
-    private Pose PlacementPose; // Stores position + rotation data
+    private Pose PlacementPose; 
     public ARRaycastManager raycastManager;
     private bool placementPoseIsValid = false;
 
@@ -24,28 +22,19 @@ public class ARTapToPlaceObject : MonoBehaviour
     private void Update()
     {
         UpdatePlacementPose();
-        UpdatePlacementIndicator();
 
-        // if there is a valid location + we tap the screen, spawn an item at that location
         if (placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             PlaceObject();
         }
     }
 
-    /**
-     * Based on where we are pointing towards, is there any planes. 
-     */
     void UpdatePlacementPose()
     {
-        // convert viewport position to screen position. Center of screen may not be (0.5, 0.5) since different phones have different sizes
         var screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f)); 
-
-        // shoot a ray out from middle of screen to see if it hits anything
         var hits = new List<ARRaycastHit>();
         raycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
 
-        // is there a plane and are we currently facing it
         placementPoseIsValid = hits.Count > 0;
         if (placementPoseIsValid)
         {
@@ -53,70 +42,28 @@ public class ARTapToPlaceObject : MonoBehaviour
         }
     }
 
-    /**
-     * Move the placement indicator object
-     */
-    void UpdatePlacementIndicator()
-    {
-        if (placementPoseIsValid)
-        {
-            // if there is a valid plane, activate placement indicator object and make it follow around
-            placementIndicator.SetActive(true);
-            placementIndicator.transform.SetPositionAndRotation(PlacementPose.position, PlacementPose.rotation);
-        }
-        else
-        {
-            // no valid place, deactivate
-            placementIndicator.SetActive(false);
-        }
-    }
-
     private void PlaceObject()
     {
-        if (activeObject != null)
-        {
-            Instantiate(activeObject, PlacementPose.position, PlacementPose.rotation);
-        }
+        // Your existing code to place the object
     }
 
     public void ActivateRect()
     {
-        DeactivateAllObjects();
-        rectObject.SetActive(true);
-        activeObject = rectObject;
+        // Your existing code
     }
 
     public void ActivateCircle()
     {
-        DeactivateAllObjects();
-        circleObject.SetActive(true);
-        activeObject = circleObject;
+        // Your existing code
     }
 
     public void ActivateGrey()
     {
-        DeactivateAllObjects();
-        greyObject.SetActive(true);
-        activeObject = greyObject;
+        // Your existing code
     }
 
     public void ActivateGreen()
     {
-        DeactivateAllObjects();
-        greenObject.SetActive(true);
-        activeObject = greenObject;
+        // Your existing code
     }
-
-    private void DeactivateAllObjects()
-    {
-        if (rectObject != null)
-            rectObject.SetActive(false);
-        if (circleObject != null)
-            circleObject.SetActive(false);
-        if (greyObject != null)
-            greyObject.SetActive(false);
-        if (greenObject != null)
-            greenObject.SetActive(false);
-    }
-
 }

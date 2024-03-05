@@ -22,15 +22,15 @@ public class GreyButtonController : MonoBehaviour
             Debug.LogError("ARTapToPlaceObject reference not set!");
         }
         // Ensure the reference to the PlacementIndicator is set
-        if (placementIndicator == null)
-        {
-            Debug.LogError("PlacementIndicator reference is not set!");
-        }
-        else
-        {
-            // Deactivate the PlacementIndicator GameObject initially
-            placementIndicator.SetActive(false);
-        }
+        // if (placementIndicator == null)
+        // {
+        //     Debug.LogError("PlacementIndicator reference is not set!");
+        // }
+        // else
+        // {
+        //     // Deactivate the PlacementIndicator GameObject initially
+        //     placementIndicator.SetActive(false);
+        // }
     }
 
     // Function to be called when the button is clicked
