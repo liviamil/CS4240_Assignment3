@@ -12,8 +12,8 @@ public class ARTapToPlaceObject : MonoBehaviour
     public GameObject placementIndicator;
     private GameObject objToSpawn;
 
-    public Button tapButton; // Reference to the tap button
-    private bool tapButtonClicked = false; // Flag to indicate if tap button is clicked
+    // public Button tapButton; // Reference to the tap button
+    private bool buttonState = false; // Flag to indicate if tap button is clicked
 
     private Pose PlacementPose; 
     public ARRaycastManager raycastManager;
@@ -23,25 +23,23 @@ public class ARTapToPlaceObject : MonoBehaviour
     {
         raycastManager = FindObjectOfType<ARRaycastManager>();
         // Add listener to the tap button
-        tapButton.onClick.AddListener(OnTapButtonClick);
+        // tapButton.onClick.AddListener(OnTapButtonClick);
     }
 
     // Method to handle tap button click
     public void OnTapButtonClick()
     {
-        // Set tapButtonClicked to true when the button is clicked
-        tapButtonClicked = true;
+        // if there is a valid location + we tap the tapbutton, spawn an item at that location
+        if (placementPoseIsValid)
+        {
+            PlaceObject();
+        }        
     }
 
     private void Update()
     {
         UpdatePlacementPose();
         UpdatePlacementIndicator();
-        // if there is a valid location + we tap the tapbutton, spawn an item at that location
-        if (placementPoseIsValid && tapButtonClicked)
-        {
-            PlaceObject();
-        }
     }
 
     void UpdatePlacementPose()
