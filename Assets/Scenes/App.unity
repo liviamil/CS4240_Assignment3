@@ -1208,7 +1208,7 @@ MonoBehaviour:
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: 5118cb38f8c9c8f42a9f5141577be5eb, type: 3}
   originalImage: {fileID: 21300000, guid: 3c76d3303794c2148bcce32b134ccd3f, type: 3}
-  placementController: {fileID: 0}
+  placementController: {fileID: 1593190595}
 --- !u!1 &1046685543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,7 +1630,7 @@ MonoBehaviour:
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: 3f734e927754d7244b3166f8d4afa6f9, type: 3}
   originalImage: {fileID: 21300000, guid: 13975d5b1ffa9c24ea74adf5e7e40a14, type: 3}
-  placementController: {fileID: 0}
+  placementController: {fileID: 1593190595}
 --- !u!1 &1368545606
 GameObject:
   m_ObjectHideFlags: 0
@@ -2306,7 +2306,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 808349659}
-  tapButton: {fileID: 1593190592}
   raycastManager: {fileID: 0}
 --- !u!1 &1713354126
 GameObject:
@@ -2459,7 +2458,7 @@ MonoBehaviour:
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: cd56747f88bb7a24aa356640814e3745, type: 3}
   originalImage: {fileID: 21300000, guid: 1a0320bc9c2648140897ac6dcf903fdf, type: 3}
-  placementController: {fileID: 0}
+  placementController: {fileID: 1593190595}
 --- !u!1 &1764564461
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,7 +3040,7 @@ MonoBehaviour:
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: a1eabf8ef5d9272428eab7514744cd80, type: 3}
   originalImage: {fileID: 21300000, guid: 5762a3891968676409c781f8c151c2ba, type: 3}
-  placementController: {fileID: 0}
+  placementController: {fileID: 1593190595}
 --- !u!1 &2028095280
 GameObject:
   m_ObjectHideFlags: 0

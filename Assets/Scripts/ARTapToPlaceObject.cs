@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -33,6 +32,8 @@ public class ARTapToPlaceObject : MonoBehaviour
         if (placementPoseIsValid)
         {
             PlaceObject();
+            Debug.Log("Button is clicked");
+            Debug.LogError("ARTapToPlaceObject reference not set!");
         }        
     }
 
