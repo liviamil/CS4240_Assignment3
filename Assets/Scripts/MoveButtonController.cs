@@ -9,6 +9,7 @@ public class MoveButtonController : MonoBehaviour
     public Sprite originalImage; // Original image for Button
 
     private Image activeMoveImage;
+    private Button[] actionButtons; // Array to store other action buttons
     private bool buttonState = false;
 
     // Start is called before the first frame update
@@ -28,6 +29,8 @@ public class MoveButtonController : MonoBehaviour
             if (activeMoveImage != null && newImage != null)
             {
                 activeMoveImage.sprite = newImage;
+                // Deactivate other action buttons
+                DeactivateOtherActionButtons();
             }
         }
         else
@@ -39,6 +42,39 @@ public class MoveButtonController : MonoBehaviour
             }
         }
     }
+
+    // Deactivate other action buttons
+    void DeactivateOtherActionButtons()
+    {
+        PlusButtonController[] plusButtons = FindObjectsOfType<PlusButtonController>();
+        foreach (PlusButtonController plusButton in plusButtons)
+        {
+            if (plusButton != this)
+            {
+                plusButton.DeactivateButton();
+            }
+        }
+
+        DeleteButtonController[] deleteButtons = FindObjectsOfType<DeleteButtonController>();
+        foreach (DeleteButtonController deleteButton in deleteButtons)
+        {
+            if (deleteButton != this)
+            {
+                deleteButton.DeactivateButton();
+            }
+        }
+    }
+
+    // Deactivate this button
+    public void DeactivateButton()
+    {
+        buttonState = false;
+        if (activeMoveImage != null && originalImage != null)
+        {
+            activeMoveImage.sprite = originalImage;
+        }
+    }
+    
     
     // Update is called once per frame
     void Update()

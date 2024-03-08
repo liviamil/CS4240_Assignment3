@@ -96,7 +96,7 @@ public class FurnitureButtonsController : MonoBehaviour
             if (isActive)
             {
                 Debug.Log("Grey button is active");
-            }
+            }            
         }
         else if (greenButtonController != null)
         {

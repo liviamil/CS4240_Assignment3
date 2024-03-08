@@ -10,6 +10,7 @@ public class PlusButtonController : MonoBehaviour
 
     private Image activePlusImage;
     private Button[] furnitureButtons;
+    private Button[] actionButtons; // Array to store other action buttons
     private bool buttonState = false;
 
     // Start is called before the first frame update
@@ -22,7 +23,7 @@ public class PlusButtonController : MonoBehaviour
         if (furniture != null)
         {
             furnitureButtons = furniture.GetComponentsInChildren<Button>(includeInactive: true);
-        }
+        }   
     }
 
     public void OnPlusButtonClick()
@@ -36,6 +37,8 @@ public class PlusButtonController : MonoBehaviour
             if (activePlusImage != null && newImage != null)
             {
                 activePlusImage.sprite = newImage;
+                // Deactivate other action buttons
+                DeactivateOtherActionButtons();
             }
 
             // Turn on the visibility of Buttons B
@@ -63,6 +66,38 @@ public class PlusButtonController : MonoBehaviour
                     furniture.gameObject.SetActive(false);
                 }
             }
+        }
+    }
+
+    // Deactivate other action buttons
+    void DeactivateOtherActionButtons()
+    {
+        MoveButtonController[] moveButtons = FindObjectsOfType<MoveButtonController>();
+        foreach (MoveButtonController moveButton in moveButtons)
+        {
+            if (moveButton != this)
+            {
+                moveButton.DeactivateButton();
+            }
+        }
+
+        DeleteButtonController[] deleteButtons = FindObjectsOfType<DeleteButtonController>();
+        foreach (DeleteButtonController deleteButton in deleteButtons)
+        {
+            if (deleteButton != this)
+            {
+                deleteButton.DeactivateButton();
+            }
+        }
+    }
+
+    // Deactivate this button
+    public void DeactivateButton()
+    {
+        buttonState = false;
+        if (activePlusImage != null && originalImage != null)
+        {
+            activePlusImage.sprite = originalImage;
         }
     }
 
