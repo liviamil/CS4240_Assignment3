@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 808349659}
-  raycastManager: {fileID: 0}
+  raycastManager: {fileID: 668730091}
 --- !u!1 &391016323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,6 +2089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 808349659}
+  raycastManager: {fileID: 668730091}
 --- !u!114 &1399739516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2389,6 +2390,9 @@ MonoBehaviour:
   placeObjectScript: {fileID: 288807592}
   moveObjectScript: {fileID: 1399739515}
   deleteObjectScript: {fileID: 1764564466}
+  plusButtonController: {fileID: 288807591}
+  moveButtonController: {fileID: 1399739516}
+  deleteButtonController: {fileID: 1764564467}
 --- !u!1 &1713354126
 GameObject:
   m_ObjectHideFlags: 0
@@ -2702,7 +2706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 808349659}
-  raycastManager: {fileID: 0}
+  raycastManager: {fileID: 668730091}
 --- !u!114 &1764564467
 MonoBehaviour:
   m_ObjectHideFlags: 0

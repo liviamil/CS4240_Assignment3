@@ -9,7 +9,7 @@ using UnityEngine.XR.ARSubsystems;
 public class ARTapToMoveObject : MonoBehaviour
 {
     public GameObject placementIndicator;
-    private ARRaycastManager raycastManager;
+    public ARRaycastManager raycastManager;
     private Pose placementPose;
     private bool placementPoseIsValid = false;
     private GameObject selectedObject;
@@ -78,7 +78,7 @@ public class ARTapToMoveObject : MonoBehaviour
             GameObject hitObject = hit.collider.gameObject;
 
             // Check if the hit object is selectable
-            if (hitObject.CompareTag("Selectable"))
+            if (hitObject.CompareTag("ARObject"))
             {
                 selectedObject = hitObject;
                 isObjectSelected = true;

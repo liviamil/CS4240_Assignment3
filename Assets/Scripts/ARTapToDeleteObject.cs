@@ -64,7 +64,7 @@ public class ARTapToDeleteObject : MonoBehaviour
             GameObject hitObject = hit.collider.gameObject;
 
             // Check if the hit object has a tag indicating it's deletable (you can customize this)
-            if (hitObject.CompareTag("Deletable"))
+            if (hitObject.CompareTag("ARObject"))
             {
                 // Delete the object
                 Destroy(hitObject);

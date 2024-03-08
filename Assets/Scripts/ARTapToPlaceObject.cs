@@ -29,8 +29,6 @@ public class ARTapToPlaceObject : MonoBehaviour
         if (placementPoseIsValid)
         {
             PlaceObject();
-            // Debug.Log("Button is clicked");
-            // Debug.LogError("ARTapToPlaceObject reference not set!");
         }        
     }
 

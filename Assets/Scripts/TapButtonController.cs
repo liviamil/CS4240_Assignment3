@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TapButtonController : MonoBehaviour
 {
@@ -17,6 +18,22 @@ public class TapButtonController : MonoBehaviour
     public ARTapToPlaceObject placeObjectScript;
     public ARTapToMoveObject moveObjectScript;
     public ARTapToDeleteObject deleteObjectScript;
+
+    public PlusButtonController plusButtonController;
+    public MoveButtonController moveButtonController;
+    public DeleteButtonController deleteButtonController;
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Check if all buttons have originalImage as sprite, then set currentAction to None
+        if (plusButtonController.originalImage == plusButtonController.GetComponent<Image>().sprite &&
+            moveButtonController.originalImage == moveButtonController.GetComponent<Image>().sprite &&
+            deleteButtonController.originalImage == deleteButtonController.GetComponent<Image>().sprite)
+        {
+            currentAction = ActionType.None;
+        }
+    }
 
     public void SetActionPlus()
     {
@@ -62,7 +79,7 @@ public class TapButtonController : MonoBehaviour
                 }
                 break;
             default:
-                Debug.LogError("Invalid action selected.");
+                Debug.Log("No action is selected");
                 break;
         }
     }
