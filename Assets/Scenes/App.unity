@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 288807589}
   - component: {fileID: 288807588}
   - component: {fileID: 288807591}
+  - component: {fileID: 288807592}
   m_Layer: 5
   m_Name: PlusButton
   m_TagString: Untagged
@@ -287,7 +288,7 @@ RectTransform:
   m_GameObject: {fileID: 288807586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 159841984}
@@ -296,7 +297,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 685, y: 546}
+  m_AnchoredPosition: {x: 684.9998, y: 545.9999}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &288807588
@@ -354,7 +355,19 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
+      - m_Target: {fileID: 1593190595}
+        m_TargetAssemblyTypeName: TapButtonController, Assembly-CSharp
+        m_MethodName: SetActionPlus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &288807589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +420,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newImage: {fileID: 21300000, guid: 3ccf831d761a87745afcb6a331d2e75f, type: 3}
   originalImage: {fileID: 21300000, guid: 51f5df82a0250de4882b351cd09f061c, type: 3}
+--- !u!114 &288807592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288807586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce07263a1f2a4b34da33c471a02c4a26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placementIndicator: {fileID: 808349659}
+  raycastManager: {fileID: 0}
 --- !u!1 &391016323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1235,7 @@ MonoBehaviour:
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: 5118cb38f8c9c8f42a9f5141577be5eb, type: 3}
   originalImage: {fileID: 21300000, guid: 3c76d3303794c2148bcce32b134ccd3f, type: 3}
-  placementController: {fileID: 1593190595}
+  placementController: {fileID: 288807592}
 --- !u!1 &1046685543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,7 +1657,7 @@ MonoBehaviour:
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: 3f734e927754d7244b3166f8d4afa6f9, type: 3}
   originalImage: {fileID: 21300000, guid: 13975d5b1ffa9c24ea74adf5e7e40a14, type: 3}
-  placementController: {fileID: 1593190595}
+  placementController: {fileID: 288807592}
 --- !u!1 &1368545606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,6 +1940,8 @@ GameObject:
   - component: {fileID: 1399739514}
   - component: {fileID: 1399739513}
   - component: {fileID: 1399739512}
+  - component: {fileID: 1399739516}
+  - component: {fileID: 1399739515}
   m_Layer: 5
   m_Name: MoveButton
   m_TagString: Untagged
@@ -1984,7 +2013,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1399739513}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1399739516}
+        m_TargetAssemblyTypeName: MoveButtonController, Assembly-CSharp
+        m_MethodName: OnMoveButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1593190595}
+        m_TargetAssemblyTypeName: TapButtonController, Assembly-CSharp
+        m_MethodName: SetActionMove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1399739513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2023,6 +2076,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399739510}
   m_CullTransparentMesh: 1
+--- !u!114 &1399739515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399739510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c207864f9633f6b4382bb64a7c863bc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placementIndicator: {fileID: 808349659}
+--- !u!114 &1399739516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399739510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c764bca4add4a144b8ffbb9b1c9ba11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newImage: {fileID: 21300000, guid: 7fe49b44a002d5a44ba6df8ea35a66ce, type: 3}
+  originalImage: {fileID: 21300000, guid: 728c3124694e2cc4ea88ee556cae2c54, type: 3}
 --- !u!1 &1447942464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,8 +2324,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1593190595}
-        m_TargetAssemblyTypeName: ARTapToPlaceObject, Assembly-CSharp
-        m_MethodName: OnTapButtonClick
+        m_TargetAssemblyTypeName: TapButtonController, Assembly-CSharp
+        m_MethodName: OnTap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2302,11 +2382,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1593190590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce07263a1f2a4b34da33c471a02c4a26, type: 3}
+  m_Script: {fileID: 11500000, guid: 22104f8cf1073ed4c8b68685f01f10b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementIndicator: {fileID: 808349659}
-  raycastManager: {fileID: 0}
+  currentAction: 0
+  placeObjectScript: {fileID: 288807592}
+  moveObjectScript: {fileID: 1399739515}
+  deleteObjectScript: {fileID: 1764564466}
 --- !u!1 &1713354126
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,7 +2540,7 @@ MonoBehaviour:
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: cd56747f88bb7a24aa356640814e3745, type: 3}
   originalImage: {fileID: 21300000, guid: 1a0320bc9c2648140897ac6dcf903fdf, type: 3}
-  placementController: {fileID: 1593190595}
+  placementController: {fileID: 288807592}
 --- !u!1 &1764564461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,6 +2553,8 @@ GameObject:
   - component: {fileID: 1764564465}
   - component: {fileID: 1764564464}
   - component: {fileID: 1764564463}
+  - component: {fileID: 1764564467}
+  - component: {fileID: 1764564466}
   m_Layer: 5
   m_Name: DeleteButton
   m_TagString: Untagged
@@ -2542,7 +2626,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1764564464}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1764564467}
+        m_TargetAssemblyTypeName: DeleteButtonController, Assembly-CSharp
+        m_MethodName: OnDeleteButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 1593190595}
+        m_TargetAssemblyTypeName: TapButtonController, Assembly-CSharp
+        m_MethodName: SetActionDelete
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1764564464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2581,6 +2689,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764564461}
   m_CullTransparentMesh: 1
+--- !u!114 &1764564466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764564461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196b99dcc1105b1468574530ef32b7b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placementIndicator: {fileID: 808349659}
+  raycastManager: {fileID: 0}
+--- !u!114 &1764564467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764564461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a288b0cc9db1a4c8ecf6667c68eaef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newImage: {fileID: 21300000, guid: f2ebd6a1218d2af488f410bdf695d18c, type: 3}
+  originalImage: {fileID: 21300000, guid: ee17da18753cb424baed6466a6e1bd39, type: 3}
 --- !u!1 &1767914557
 GameObject:
   m_ObjectHideFlags: 0
@@ -3009,7 +3145,7 @@ MonoBehaviour:
   placementIndicator: {fileID: 808349659}
   newImage: {fileID: 21300000, guid: a1eabf8ef5d9272428eab7514744cd80, type: 3}
   originalImage: {fileID: 21300000, guid: 5762a3891968676409c781f8c151c2ba, type: 3}
-  placementController: {fileID: 1593190595}
+  placementController: {fileID: 288807592}
 --- !u!1 &2028095280
 GameObject:
   m_ObjectHideFlags: 0
