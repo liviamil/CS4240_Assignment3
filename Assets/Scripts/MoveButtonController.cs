@@ -10,7 +10,7 @@ public class MoveButtonController : MonoBehaviour
 
     private Image activeMoveImage;
     private Button[] actionButtons; // Array to store other action buttons
-    private bool buttonState = false;
+    public bool buttonState = false;
 
     // Start is called before the first frame update
     void Start()

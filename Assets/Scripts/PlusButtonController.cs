@@ -11,7 +11,7 @@ public class PlusButtonController : MonoBehaviour
     private Image activePlusImage;
     private Button[] furnitureButtons;
     private Button[] actionButtons; // Array to store other action buttons
-    private bool buttonState = false;
+    public bool buttonState = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,9 @@ public class PlusButtonController : MonoBehaviour
     {
         // Toggle button state
         buttonState = !buttonState;
+
+        // Debug the button state
+        Debug.Log("PlusButtonController Button State: " + buttonState);
 
         if (buttonState)
         {

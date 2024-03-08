@@ -23,38 +23,30 @@ public class TapButtonController : MonoBehaviour
     public MoveButtonController moveButtonController;
     public DeleteButtonController deleteButtonController;
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Check if all buttons have originalImage as sprite, then set currentAction to None
-        if (plusButtonController.originalImage == plusButtonController.GetComponent<Image>().sprite &&
-            moveButtonController.originalImage == moveButtonController.GetComponent<Image>().sprite &&
-            deleteButtonController.originalImage == deleteButtonController.GetComponent<Image>().sprite)
-        {
-            currentAction = ActionType.None;
-        }
-    }
-
     public void SetActionPlus()
     {
         currentAction = ActionType.Plus;
+        LogButtonStates();
         Debug.Log("Action set to Plus");
     }
 
     public void SetActionMove()
     {
         currentAction = ActionType.Move;
+        LogButtonStates();
         Debug.Log("Action set to Move");
     }
 
     public void SetActionDelete()
     {
         currentAction = ActionType.Delete;
+        LogButtonStates();
         Debug.Log("Action set to Delete");
     }
 
     public void OnTap()
     {
+        LogButtonStates();
         switch (currentAction)
         {
             case ActionType.Plus:
@@ -83,6 +75,14 @@ public class TapButtonController : MonoBehaviour
                 break;
         }
     }
-}
 
-// test
+    private void LogButtonStates()
+    {
+        string logMessage = "Button States: " +
+                            "\nPlace Button  State: " + placeObjectScript.buttonState +
+                            "\nPlus Button State: " + plusButtonController.buttonState +
+                            "\nMove Button State: " + moveButtonController.buttonState +
+                            "\nDelete Button State: " + deleteButtonController.buttonState;
+        Debug.Log(logMessage);
+    }
+}

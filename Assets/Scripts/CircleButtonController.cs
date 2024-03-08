@@ -12,7 +12,7 @@ public class CircleButtonController : MonoBehaviour
     public ARTapToPlaceObject placementController; // Link to ARTapToPlaceObject
 
     private Image activeImage;
-    private bool buttonState = false;
+    public bool buttonState = false;
 
     void Start()
     {

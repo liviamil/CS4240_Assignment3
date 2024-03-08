@@ -12,7 +12,7 @@ public class ARTapToPlaceObject : MonoBehaviour
     private GameObject objToSpawn;
 
     // public Button tapButton; // Reference to the tap button
-    private bool buttonState = false; // Flag to indicate if tap button is clicked
+    public bool buttonState = false; // Flag to indicate if tap button is clicked
 
     private Pose PlacementPose; 
     public ARRaycastManager raycastManager;
@@ -25,6 +25,9 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     public void OnTapButtonClick()
     {
+        // Debug the button state
+        Debug.Log("ARTapToPlaceObject Button State: " + buttonState);
+
         // if there is a valid location + we tap the tapbutton, spawn an item at that location
         if (placementPoseIsValid)
         {
