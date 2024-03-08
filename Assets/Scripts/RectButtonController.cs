@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RectButtonController : MonoBehaviour
 {
-    public GameObject rectPrefab;
+    public GameObject rectPrefab; // Assign in inspector
     public GameObject placementIndicator;
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
@@ -34,6 +34,35 @@ public class RectButtonController : MonoBehaviour
         }
     }
 
+        // Function to set the new image for the button
+    public void SetNewImage()
+    {
+        if (activeImage != null && newImage != null)
+        {
+            activeImage.sprite = newImage;
+        }
+
+        // Activate the PlacementIndicator GameObject
+        placementIndicator.SetActive(true);
+        placementController.SetObjectToSpawn(rectPrefab);
+    }
+
+    // Function to set the original image for the button
+    public void SetOriginalImage()
+    {
+        if (activeImage != null && originalImage != null)
+        {
+            activeImage.sprite = originalImage;
+        }
+
+        // Check if any of the furniture buttons are still active
+        if (!AnyFurnitureButtonActive())
+        {
+            // Deactivate the PlacementIndicator GameObject
+            placementIndicator.SetActive(false);
+        }
+    }
+
     // Function to be called when the button is clicked
     public void OnRectButtonClick()
     {
@@ -42,28 +71,10 @@ public class RectButtonController : MonoBehaviour
 
         if (buttonState)
         {
-            if (activeImage != null && newImage != null)
-            {
-                activeImage.sprite = newImage;
-            }
-
-            // Activate the PlacementIndicator GameObject
-            placementIndicator.SetActive(true);
-            placementController.SetObjectToSpawn(rectPrefab);
-        }
+            SetNewImage();}
         else
         {
-            if (activeImage != null && originalImage != null)
-            {
-                activeImage.sprite = originalImage;
-            }
-
-            // Check if any of the furniture buttons are still active
-            if (!AnyFurnitureButtonActive())
-            {
-                // Deactivate the PlacementIndicator GameObject
-                placementIndicator.SetActive(false);
-            }
+            SetOriginalImage();
         }
     }
 

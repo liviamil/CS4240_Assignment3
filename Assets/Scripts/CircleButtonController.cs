@@ -34,6 +34,35 @@ public class CircleButtonController : MonoBehaviour
         }
     }
 
+        // Function to set the new image for the button
+    public void SetNewImage()
+    {
+        if (activeImage != null && newImage != null)
+        {
+            activeImage.sprite = newImage;
+        }
+
+        // Activate the PlacementIndicator GameObject
+        placementIndicator.SetActive(true);
+        placementController.SetObjectToSpawn(circlePrefab);
+    }
+
+    // Function to set the original image for the button
+    public void SetOriginalImage()
+    {
+        if (activeImage != null && originalImage != null)
+        {
+            activeImage.sprite = originalImage;
+        }
+
+        // Check if any of the furniture buttons are still active
+        if (!AnyFurnitureButtonActive())
+        {
+            // Deactivate the PlacementIndicator GameObject
+            placementIndicator.SetActive(false);
+        }
+    }
+
     // Function to be called when the button is clicked
     public void OnCircleButtonClick()
     {
@@ -42,28 +71,10 @@ public class CircleButtonController : MonoBehaviour
 
         if (buttonState)
         {
-            if (activeImage != null && newImage != null)
-            {
-                activeImage.sprite = newImage;
-            }
-
-            // Activate the PlacementIndicator GameObject
-            placementIndicator.SetActive(true);
-            placementController.SetObjectToSpawn(circlePrefab);
-        }
+            SetNewImage();}
         else
         {
-            if (activeImage != null && originalImage != null)
-            {
-                activeImage.sprite = originalImage;
-            }
-
-            // Check if any of the furniture buttons are still active
-            if (!AnyFurnitureButtonActive())
-            {
-                // Deactivate the PlacementIndicator GameObject
-                placementIndicator.SetActive(false);
-            }
+            SetOriginalImage();
         }
     }
 
