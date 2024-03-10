@@ -60,7 +60,7 @@ public class ARTapToDeleteObject : MonoBehaviour
     {
         // Raycast to detect objects under the placement indicator
         RaycastHit hit;
-        if (Physics.Raycast(placementPose.position, Vector3.down, out hit))
+        if (Physics.Raycast(placementPose.position, Vector3.up, out hit))
         {
             GameObject hitObject = hit.collider.gameObject;
 

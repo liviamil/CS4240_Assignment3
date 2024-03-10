@@ -420,6 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newImage: {fileID: 21300000, guid: 3ccf831d761a87745afcb6a331d2e75f, type: 3}
   originalImage: {fileID: 21300000, guid: 51f5df82a0250de4882b351cd09f061c, type: 3}
+  buttonState: 0
 --- !u!114 &288807592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 808349659}
+  buttonState: 0
   raycastManager: {fileID: 668730091}
 --- !u!1 &391016323
 GameObject:
@@ -1236,6 +1238,7 @@ MonoBehaviour:
   newImage: {fileID: 21300000, guid: 5118cb38f8c9c8f42a9f5141577be5eb, type: 3}
   originalImage: {fileID: 21300000, guid: 3c76d3303794c2148bcce32b134ccd3f, type: 3}
   placementController: {fileID: 288807592}
+  buttonState: 0
 --- !u!1 &1046685543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,6 +1661,7 @@ MonoBehaviour:
   newImage: {fileID: 21300000, guid: 3f734e927754d7244b3166f8d4afa6f9, type: 3}
   originalImage: {fileID: 21300000, guid: 13975d5b1ffa9c24ea74adf5e7e40a14, type: 3}
   placementController: {fileID: 288807592}
+  buttonState: 0
 --- !u!1 &1368545606
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,13 +2087,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399739510}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c207864f9633f6b4382bb64a7c863bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 808349659}
   raycastManager: {fileID: 668730091}
+  buttonState: 0
 --- !u!114 &1399739516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2104,6 +2109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newImage: {fileID: 21300000, guid: 7fe49b44a002d5a44ba6df8ea35a66ce, type: 3}
   originalImage: {fileID: 21300000, guid: 728c3124694e2cc4ea88ee556cae2c54, type: 3}
+  buttonState: 0
 --- !u!1 &1447942464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,6 +2551,7 @@ MonoBehaviour:
   newImage: {fileID: 21300000, guid: cd56747f88bb7a24aa356640814e3745, type: 3}
   originalImage: {fileID: 21300000, guid: 1a0320bc9c2648140897ac6dcf903fdf, type: 3}
   placementController: {fileID: 288807592}
+  buttonState: 0
 --- !u!1 &1764564461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2707,6 +2714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 808349659}
   raycastManager: {fileID: 668730091}
+  buttonState: 0
 --- !u!114 &1764564467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2721,6 +2729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newImage: {fileID: 21300000, guid: f2ebd6a1218d2af488f410bdf695d18c, type: 3}
   originalImage: {fileID: 21300000, guid: ee17da18753cb424baed6466a6e1bd39, type: 3}
+  buttonState: 0
 --- !u!1 &1767914557
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,6 +3159,7 @@ MonoBehaviour:
   newImage: {fileID: 21300000, guid: a1eabf8ef5d9272428eab7514744cd80, type: 3}
   originalImage: {fileID: 21300000, guid: 5762a3891968676409c781f8c151c2ba, type: 3}
   placementController: {fileID: 288807592}
+  buttonState: 0
 --- !u!1 &2028095280
 GameObject:
   m_ObjectHideFlags: 0
