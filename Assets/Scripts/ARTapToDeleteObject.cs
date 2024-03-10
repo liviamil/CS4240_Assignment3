@@ -12,6 +12,7 @@ public class ARTapToDeleteObject : MonoBehaviour
     public ARRaycastManager raycastManager;
     private Pose placementPose;
     private bool placementPoseIsValid = false;
+    public bool buttonState = false; // Flag to indicate if tap button is clicked
 
     private void Start()
     {

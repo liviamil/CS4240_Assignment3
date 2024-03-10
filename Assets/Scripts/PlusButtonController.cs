@@ -43,15 +43,6 @@ public class PlusButtonController : MonoBehaviour
                 // Deactivate other action buttons
                 DeactivateOtherActionButtons();
             }
-
-            // Turn on the visibility of Buttons B
-            if (furnitureButtons != null)
-            {
-                foreach (Button furniture in furnitureButtons)
-                {
-                    furniture.gameObject.SetActive(true);
-                }
-            }
         }
         else
         {
@@ -59,15 +50,6 @@ public class PlusButtonController : MonoBehaviour
             if (activePlusImage != null && originalImage != null)
             {
                 activePlusImage.sprite = originalImage;
-            }
-
-            // Turn off the visibility of Buttons B
-            if (furnitureButtons != null)
-            {
-                foreach (Button furniture in furnitureButtons)
-                {
-                    furniture.gameObject.SetActive(false);
-                }
             }
         }
     }
@@ -107,6 +89,13 @@ public class PlusButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Toggle visibility of furniture buttons based on button state
+        if (furnitureButtons != null)
+        {
+            foreach (Button furniture in furnitureButtons)
+            {
+                furniture.gameObject.SetActive(buttonState);
+            }
+        }
     }
 }

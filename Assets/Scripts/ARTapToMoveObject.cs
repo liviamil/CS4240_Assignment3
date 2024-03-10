@@ -14,6 +14,7 @@ public class ARTapToMoveObject : MonoBehaviour
     private bool placementPoseIsValid = false;
     private GameObject selectedObject;
     private bool isObjectSelected = false;
+    public bool buttonState = false; // Flag to indicate if tap button is clicked
 
     private void Start()
     {
