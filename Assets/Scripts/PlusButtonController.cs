@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlusButtonController : MonoBehaviour
 {
+    // Reference to the script you want to enable/disable
+    public ARTapToPlaceObject ArTapToPlaceScript;
+
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
 
@@ -24,15 +27,14 @@ public class PlusButtonController : MonoBehaviour
         {
             furnitureButtons = furniture.GetComponentsInChildren<Button>(includeInactive: true);
         }   
+        // Disable the ArTapToPlaceScript initially
+        ArTapToPlaceScript.enabled = false;
     }
 
     public void OnPlusButtonClick()
     {
         // Toggle button state
         buttonState = !buttonState;
-
-        // Debug the button state
-        Debug.Log("PlusButtonController Button State: " + buttonState);
 
         if (buttonState)
         {
@@ -97,5 +99,13 @@ public class PlusButtonController : MonoBehaviour
                 furniture.gameObject.SetActive(buttonState);
             }
         }
+
+        // Enable or disable the ArTapToPlaceScript based on the button state
+        ArTapToPlaceScript.enabled = buttonState;
+
+        // Debug the ARTapToPlace script
+        Debug.Log("ARTapToPlace enabled: " + ArTapToPlaceScript.enabled);
+         Debug.Log("Plus button state: " + buttonState);
+ 
     }
 }
