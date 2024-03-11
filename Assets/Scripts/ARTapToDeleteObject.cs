@@ -9,10 +9,13 @@ using UnityEngine.XR.ARSubsystems;
 public class ARTapToDeleteObject : MonoBehaviour
 {
     public GameObject placementIndicator;
+    private GameObject hitObject; // Store reference to the object to delete
+
+    private Pose PlacementPose;
     public ARRaycastManager raycastManager;
-    private Pose placementPose;
     private bool placementPoseIsValid = false;
-    public bool buttonState = false; // Flag to indicate if tap button is clicked
+    private bool collisionDetected = false;
+
 
     private void Start()
     {
@@ -22,7 +25,7 @@ public class ARTapToDeleteObject : MonoBehaviour
     public void OnTapButtonClick()
     {
         // if there is a valid location + we tap the tapbutton, destroy an item at that location
-        if (placementPoseIsValid)
+        if (placementPoseIsValid && collisionDetected)
         {
             DeleteObject();
         }        
@@ -36,15 +39,65 @@ public class ARTapToDeleteObject : MonoBehaviour
 
     void UpdatePlacementPose()
     {
+        // convert viewport position to screen position. Center of screen may not be (0.5, 0.5) since different phones have different sizes
         var screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        
+        // shoot a ray out from middle of screen to see if it hits anything
         var hits = new List<ARRaycastHit>();
         raycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
 
+        // is there a plane and are we currently facing it
         placementPoseIsValid = hits.Count > 0;
         if (placementPoseIsValid)
         {
-            placementPose = hits[0].pose;
+            PlacementPose = hits[0].pose;
+
+            // Check for collisions with existing objects
+            Collider[] colliders = Physics.OverlapBox(PlacementPose.position, placementIndicator.GetComponent<BoxCollider>().size / 2f, Quaternion.identity);
+            foreach (Collider collider in colliders)
+            {
+                // Check if the hit object has the tag "ARObject"
+                if (hitObject.CompareTag("ARObject"))
+                {
+                    collisionDetected = true;
+                }
+                else
+                {
+                    collisionDetected = false;
+                }
+            
+            collisionDetected = false;
+            }
         }
+        else
+        {
+            collisionDetected = false;
+        }
+        //     // Raycast to detect objects above the placement indicator
+        //     RaycastHit hit;
+        //     if (Physics.Raycast(PlacementPose.position, Vector3.up, out hit))
+        //     {
+        //         hitObject = hit.collider.gameObject;
+
+        //         // Check if the hit object has the tag "ARObject"
+        //         if (hitObject.CompareTag("ARObject"))
+        //         {
+        //             collisionDetected = true;
+        //         }
+        //         else
+        //         {
+        //             collisionDetected = false;
+        //         }
+        //     }
+        //     else
+        //     {
+        //         collisionDetected = false;
+        //     }
+        // }
+        // else
+        // {
+        //     collisionDetected = false;
+        // }
     }
 
     void UpdatePlacementIndicator()
@@ -52,24 +105,13 @@ public class ARTapToDeleteObject : MonoBehaviour
         placementIndicator.SetActive(placementPoseIsValid);
         if (placementPoseIsValid)
         {
-            placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
+            placementIndicator.transform.SetPositionAndRotation(PlacementPose.position, PlacementPose.rotation);
         }
     }
 
     void DeleteObject()
     {
-        // Raycast to detect objects under the placement indicator
-        RaycastHit hit;
-        if (Physics.Raycast(placementPose.position, Vector3.up, out hit))
-        {
-            GameObject hitObject = hit.collider.gameObject;
-
-            // Check if the hit object has a tag indicating it's deletable (you can customize this)
-            if (hitObject.CompareTag("ARObject"))
-            {
-                // Delete the object
-                Destroy(hitObject);
-            }
-        }
+        // Delete the object
+        Destroy(hitObject);
     }
 }

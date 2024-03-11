@@ -435,7 +435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 808349659}
-  buttonState: 0
   raycastManager: {fileID: 668730091}
 --- !u!1 &391016323
 GameObject:
@@ -2715,7 +2714,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 808349659}
   raycastManager: {fileID: 668730091}
-  buttonState: 0
 --- !u!114 &1764564467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2728,6 +2726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20a288b0cc9db1a4c8ecf6667c68eaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArTapToDeleteScript: {fileID: 1764564466}
   newImage: {fileID: 21300000, guid: f2ebd6a1218d2af488f410bdf695d18c, type: 3}
   originalImage: {fileID: 21300000, guid: ee17da18753cb424baed6466a6e1bd39, type: 3}
   buttonState: 0

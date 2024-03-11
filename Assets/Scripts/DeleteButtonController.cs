@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class DeleteButtonController : MonoBehaviour
 {
+    // Reference to the script you want to enable/disable
+    public ARTapToDeleteObject ArTapToDeleteScript;
+
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
 
@@ -16,6 +19,9 @@ public class DeleteButtonController : MonoBehaviour
     void Start()
     {
         activeDeleteImage = GetComponent<Image>();
+        
+        // Disable the ArTapToDeleteScript initially
+        ArTapToDeleteScript.enabled = false;
     }
 
     public void OnDeleteButtonClick()
@@ -79,6 +85,12 @@ public class DeleteButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Enable or disable the ArTapToDeleteScript based on the button state
+        ArTapToDeleteScript.enabled = buttonState;
+
+        // Debug the ARTapToDelete script
+        Debug.Log("ARTapToDelete enabled: " + ArTapToDeleteScript.enabled);
+         Debug.Log("Delete button state: " + buttonState);
 
     }
 }

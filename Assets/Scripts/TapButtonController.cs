@@ -79,9 +79,6 @@ public class TapButtonController : MonoBehaviour
     private void LogButtonStates()
     {
         string logMessage = "Button States: " +
-                            "\nPlace Button State: " + placeObjectScript.buttonState +
-                            "\nMove Button State: " + moveObjectScript.buttonState +
-                            "\nDelete Button State: " + deleteObjectScript.buttonState +
                             "\nPlus Button State: " + plusButtonController.buttonState +
                             "\nMove Button State: " + moveButtonController.buttonState +
                             "\nDelete Button State: " + deleteButtonController.buttonState;
