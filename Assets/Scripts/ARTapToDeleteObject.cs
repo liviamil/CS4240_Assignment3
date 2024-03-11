@@ -14,7 +14,6 @@ public class ARTapToDeleteObject : MonoBehaviour
     private Pose PlacementPose;
     public ARRaycastManager raycastManager;
     private bool placementPoseIsValid = false;
-    private bool collisionDetected = false;
 
 
     private void Start()
@@ -24,8 +23,8 @@ public class ARTapToDeleteObject : MonoBehaviour
 
     public void OnTapButtonClick()
     {
-        // if there is a valid location + we tap the tapbutton, destroy an item at that location
-        if (placementPoseIsValid && collisionDetected)
+        // If there is a valid location and a valid hit object, delete it
+        if (placementPoseIsValid && hitObject != null)
         {
             DeleteObject();
         }        
@@ -54,58 +53,35 @@ public class ARTapToDeleteObject : MonoBehaviour
 
             // Check for collisions with existing objects
             Collider[] colliders = Physics.OverlapBox(PlacementPose.position, placementIndicator.GetComponent<BoxCollider>().size / 2f, Quaternion.identity);
+            bool objectFound = false;
             foreach (Collider collider in colliders)
             {
-                // Check if the hit object has the tag "ARObject"
-                if (hitObject.CompareTag("ARObject"))
+                if (collider.CompareTag("ARObject"))
                 {
-                    collisionDetected = true;
+                    hitObject = collider.gameObject;
+                    objectFound = true;
+                    break;
                 }
-                else
-                {
-                    collisionDetected = false;
-                }
-            
-            collisionDetected = false;
+            }
+
+            if (!objectFound)
+            {
+                hitObject = null;
             }
         }
         else
         {
-            collisionDetected = false;
+            hitObject = null;
         }
-        //     // Raycast to detect objects above the placement indicator
-        //     RaycastHit hit;
-        //     if (Physics.Raycast(PlacementPose.position, Vector3.up, out hit))
-        //     {
-        //         hitObject = hit.collider.gameObject;
-
-        //         // Check if the hit object has the tag "ARObject"
-        //         if (hitObject.CompareTag("ARObject"))
-        //         {
-        //             collisionDetected = true;
-        //         }
-        //         else
-        //         {
-        //             collisionDetected = false;
-        //         }
-        //     }
-        //     else
-        //     {
-        //         collisionDetected = false;
-        //     }
-        // }
-        // else
-        // {
-        //     collisionDetected = false;
-        // }
     }
-
+    
     void UpdatePlacementIndicator()
     {
         placementIndicator.SetActive(placementPoseIsValid);
         if (placementPoseIsValid)
         {
-            placementIndicator.transform.SetPositionAndRotation(PlacementPose.position, PlacementPose.rotation);
+            // Set placement indicator's position to the camera's position and rotation
+            placementIndicator.transform.SetPositionAndRotation(Camera.main.transform.position, Camera.main.transform.rotation);
         }
     }
 

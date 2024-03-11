@@ -69,7 +69,6 @@ public class ARTapToPlaceObject : MonoBehaviour
         placementIndicator.SetActive(placementPoseIsValid);
         if (placementPoseIsValid)
         {
-
             placementIndicator.transform.SetPositionAndRotation(PlacementPose.position, PlacementPose.rotation);
         }
     }
