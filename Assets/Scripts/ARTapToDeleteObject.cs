@@ -64,19 +64,31 @@ public class ARTapToDeleteObject : MonoBehaviour
     {
         collisionDetected = false; // Reset collision status
 
-        // Perform a raycast from the placement indicator upwards to detect objects
-        if (Physics.Raycast(placementPose.position, Vector3.up, out RaycastHit hit, Mathf.Infinity))
+        /// Perform a raycast upwards
+        if (Physics.Raycast(placementPose.position, Vector3.up, out RaycastHit upHit, Mathf.Infinity))
         {
-            if (hit.collider.CompareTag("ARObject"))
+            if (upHit.collider.CompareTag("ARObject"))
             {
+                StartCoroutine(DebugMessage("Collision detected (upwards)", 5f));
                 collisionDetected = true;
-                objToDelete = hit.collider.gameObject;
-                StartCoroutine(DebugMessage("Collision detected", 2f));
+                objToDelete = upHit.collider.gameObject;
             }
         }
+
+        // Perform a raycast downwards
+        if (Physics.Raycast(placementPose.position, Vector3.down, out RaycastHit downHit, Mathf.Infinity))
+        {
+            if (downHit.collider.CompareTag("ARObject"))
+            {
+                StartCoroutine(DebugMessage("Collision detected (downwards)", 5f));
+                collisionDetected = true;
+                objToDelete = downHit.collider.gameObject;
+            }
+        }
+
         else
         {
-            StartCoroutine(DebugMessage("Collision not detected", 2f)); // Start coroutine to show debug message
+            StartCoroutine(DebugMessage("Collision not detected", 5f)); // Start coroutine to show debug message
         }
     }
 
