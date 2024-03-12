@@ -13,7 +13,6 @@ public class ARTapToMoveObject : MonoBehaviour
 
     private GameObject objToMove;
 
-    private bool isObjectSelected = false;
     private Pose placementPose;
     private bool placementPoseIsValid = false;
 
@@ -38,10 +37,12 @@ public class ARTapToMoveObject : MonoBehaviour
             MoveObject();
         }
         else if (buttonState && placementPoseIsValid && moving) {
-            tapButtonController.ReleaseOnHold(); // Reset UI
-            buttonState = !buttonState; // Toggle button state
-            PlaceObject();
-            moving = false;
+            bool emptySpace = CheckSpace();
+            if (emptySpace) {
+                tapButtonController.ReleaseOnHold(); // Reset UI
+                buttonState = !buttonState; // Toggle button state
+                PlaceObject();
+            }
         }     
     }
 
@@ -108,6 +109,12 @@ public class ARTapToMoveObject : MonoBehaviour
     void PlaceObject() {
         objToMove.transform.SetParent(null); // Reset parent
         objToMove.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
+    }
+
+    bool CheckSpace() {
+        Collider[] colliders = Physics.OverlapBox(placementPose.position, objToMove.GetComponent<Collider>().bounds.extents, Quaternion.identity);
+
+        return (colliders.Length == 1);
     }
 
 }
