@@ -62,7 +62,7 @@ public class ARTapToDeleteObject : MonoBehaviour
         collisionDetected = false; // Reset collision status
 
         // Perform a raycast from the placement indicator upwards to detect objects
-        if (Physics.Raycast(placementPose.position, Vector3.up, out RaycastHit hit, Mathf.Infinity))
+        if (Physics.Raycast(placementPose.position - Vector3.up * 5.0f, Vector3.up, out RaycastHit hit, Mathf.Infinity))
         {
             if (hit.collider.CompareTag("ARObject"))
             {
