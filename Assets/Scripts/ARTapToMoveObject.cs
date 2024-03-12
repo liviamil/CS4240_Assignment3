@@ -9,16 +9,19 @@ using UnityEngine.XR.ARSubsystems;
 public class ARTapToMoveObject : MonoBehaviour
 {
     public ARRaycastManager raycastManager;
-
     public GameObject placementIndicator;
-    
+
+    private GameObject objToMove;
+    private GameObject objToSpawn;
+
+    private bool isObjectSelected = false;
     private Pose placementPose;
     private bool placementPoseIsValid = false;
 
-    private GameObject selectedObject;
+    public TapButtonController tapButtonController;
+    public bool buttonState = false;
 
-    private bool isObjectSelected = false;
-    public bool buttonState = false; // Flag to indicate if tap button is clicked
+    private bool collisionDetected = false;
 
     private void Start()
     {
@@ -28,29 +31,24 @@ public class ARTapToMoveObject : MonoBehaviour
 
     public void OnTapButtonClick()
     {
-        // if there is a valid location + we tap the tapbutton, destroy an item at that location
-        if (placementPoseIsValid)
-        {
-            if (!isObjectSelected)
-            {
-                SelectObject();
-            }
-            else
-            {
-                PlaceSelectedObject();
-            }
-        }        
+        // Consider the case where initially false, before toggling, need to check if object is detected
+        if (!buttonState && collisionDetected && objToMove != null) {
+            tapButtonController.SetOnHold(); // Update UI to onhold
+            buttonState = !buttonState; // Toggle button state
+            MoveObject();
+        }
+        else if (buttonState && placementPoseIsValid && objToSpawn != null) {
+            tapButtonController.ReleaseOnHold(); // Reset UI
+            buttonState = !buttonState; // Toggle button state
+            PlaceObject();
+        }     
     }
 
     private void Update()
     {
-        UpdatePlacementPose();
         UpdatePlacementIndicator();
-
-        if (isObjectSelected)
-        {
-            MoveSelectedObject();
-        }
+        UpdatePlacementPose();
+        UpdateCollisionStatus();
     }
 
     void UpdatePlacementPose()
@@ -84,52 +82,32 @@ public class ARTapToMoveObject : MonoBehaviour
         }
     }
 
-    void SelectObject()
+    void UpdateCollisionStatus()
     {
-        // Raycast to detect objects under the placement indicator
-        RaycastHit hit;
-        if (Physics.Raycast(placementPose.position, Vector3.down, out hit))
-        {
-            GameObject hitObject = hit.collider.gameObject;
+        collisionDetected = false; // Reset collision status
 
-            // Check if the hit object is selectable
-            if (hitObject.CompareTag("ARObject"))
+        // Perform a raycast from the placement indicator upwards to detect objects
+        if (Physics.Raycast(placementPose.position - Vector3.up * 5.0f, Vector3.up, out RaycastHit hit, Mathf.Infinity))
+        {
+            if (hit.collider.CompareTag("ARObject"))
             {
-                selectedObject = hitObject;
-                isObjectSelected = true;
+                collisionDetected = true;
+                objToMove = hit.collider.gameObject;
             }
+        } else {
+            objToMove = null;
         }
     }
 
-    void MoveSelectedObject()
-    {
-        if (isObjectSelected && selectedObject != null)
-        {
-            // Move the selected object along with the camera
-            selectedObject.transform.position = placementPose.position;
-            selectedObject.transform.rotation = placementPose.rotation;
-        }
+    void MoveObject() {
+        objToSpawn = Instantiate(objToMove);
+        // objToMove.transform.position = placementPose.position;
+        // objToMove.transform.rotation = placementPose.rotation;
+        Destroy(objToMove);
     }
 
-    void PlaceSelectedObject()
-    {
-        // Check if there's a valid placement location for the selected object
-        Collider[] colliders = Physics.OverlapBox(placementPose.position, selectedObject.GetComponent<Collider>().bounds.extents / 2f, Quaternion.identity);
-        bool canPlace = true;
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject != selectedObject)
-            {
-                canPlace = false;
-                break;
-            }
-        }
-
-        // If there's a valid placement location, place the object
-        if (canPlace)
-        {
-            selectedObject = null;
-            isObjectSelected = false;
-        }
+    void PlaceObject() {
+        Instantiate(objToSpawn, placementPose.position, placementPose.rotation);    
     }
+
 }

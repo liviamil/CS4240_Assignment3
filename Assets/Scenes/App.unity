@@ -2094,7 +2094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raycastManager: {fileID: 668730091}
   placementIndicator: {fileID: 808349659}
-  buttonState: 0
+  tapButtonController: {fileID: 1593190595}
 --- !u!114 &1399739516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2400,6 +2400,10 @@ MonoBehaviour:
   plusButtonController: {fileID: 288807591}
   moveButtonController: {fileID: 1399739516}
   deleteButtonController: {fileID: 1764564467}
+  buttonImage: {fileID: 0}
+  initialImage: {fileID: 21300000, guid: 147694491e1a3bb47869fcea00552762, type: 3}
+  onHoldImage: {fileID: 21300000, guid: 8ee589789306e45d2bd9399741ee48b8, type: 3}
+  buttonState: 0
 --- !u!1 &1713354126
 GameObject:
   m_ObjectHideFlags: 0
