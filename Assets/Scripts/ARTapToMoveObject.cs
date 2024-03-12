@@ -16,6 +16,9 @@ public class ARTapToMoveObject : MonoBehaviour
     private bool isObjectSelected = false;
     private bool tapButtonClicked = false;
 
+    // Define a class-level variable to store hit information
+    private RaycastHit objectHit;
+
     private void Start()
     {
         raycastManager = FindObjectOfType<ARRaycastManager>();
@@ -76,20 +79,28 @@ public class ARTapToMoveObject : MonoBehaviour
 
     void SelectObject()
     {
-        // Check if there is no object already selected
-        if (!isObjectSelected)
+        // Raycast to detect objects under the placement indicator
+        if (Physics.Raycast(placementPose.position - Vector3.up * 5.0f, Vector3.up, out objectHit, Mathf.Infinity))
         {
-            // Raycast to detect objects above the placement indicator
-            RaycastHit objectHit;
-            if (Physics.Raycast(placementPose.position - Vector3.up * 5.0f, Vector3.up, out objectHit, Mathf.Infinity))
-            {
-                GameObject hitObject = objectHit.collider.gameObject;
+            GameObject hitObject = objectHit.collider.gameObject;
 
-                // Check if the hit object is selectable
-                if (hitObject.CompareTag("ARObject"))
+            // Check if the hit object is selectable
+            if (hitObject.CompareTag("ARObject"))
+            {
+                selectedObject = hitObject;
+                isObjectSelected = true;
+
+                // Check for collision with other ARObjects
+                Collider[] colliders = Physics.OverlapSphere(selectedObject.transform.position, selectedObject.transform.localScale.magnitude);
+
+                foreach (Collider collider in colliders)
                 {
-                    selectedObject = hitObject;
-                    isObjectSelected = true;
+                    if (collider.CompareTag("ARObject") && collider.gameObject != selectedObject)
+                    {
+                        // If there's a collision with another ARObject, prevent movement
+                        isObjectSelected = false;
+                        return;
+                    }
                 }
             }
         }
@@ -99,20 +110,22 @@ public class ARTapToMoveObject : MonoBehaviour
     {
         if (isObjectSelected && selectedObject != null)
         {
-            // Check if the placement pose intersects with any other object in the scene
-            Collider[] colliders = Physics.OverlapBox(selectedObject.transform.position, selectedObject.transform.localScale / 2);
-            foreach (Collider collider in colliders)
-            {
-                // If there is an intersection with another object, do not update the position and rotation of the selected object
-                if (collider.gameObject != selectedObject && collider.CompareTag("ARObject"))
-                {
-                    return;
-                }
-            }
-
             // Move the selected object along with the camera
             selectedObject.transform.position = placementPose.position;
             selectedObject.transform.rotation = placementPose.rotation;
+
+            // Check for collision with other ARObjects after moving
+            Collider[] colliders = Physics.OverlapSphere(selectedObject.transform.position, selectedObject.transform.localScale.magnitude);
+
+            foreach (Collider collider in colliders)
+            {
+                if (collider.CompareTag("ARObject") && collider.gameObject != selectedObject)
+                {
+                    // If there's a collision with another ARObject, revert movement
+                    selectedObject.transform.position -= placementPose.position - objectHit.point;
+                    return;
+                }
+            }
         }
     }
 
