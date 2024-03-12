@@ -8,44 +8,49 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARTapToMoveObject : MonoBehaviour
 {
-    public GameObject placementIndicator;
     public ARRaycastManager raycastManager;
+    public GameObject placementIndicator;
+
+    private GameObject objToMove;
+
     private Pose placementPose;
     private bool placementPoseIsValid = false;
-    private GameObject selectedObject;
-    private bool isObjectSelected = false;
-    public bool buttonState = false; // Flag to indicate if tap button is clicked
+
+    public TapButtonController tapButtonController;
+    public bool buttonState = false;
+
+    private bool collisionDetected = false;
+    private bool moving = false;
 
     private void Start()
     {
         raycastManager = FindObjectOfType<ARRaycastManager>();
+        placementIndicator.SetActive(false);
     }
 
     public void OnTapButtonClick()
     {
-        // if there is a valid location + we tap the tapbutton, destroy an item at that location
-        if (placementPoseIsValid)
-        {
-            if (!isObjectSelected)
-            {
-                SelectObject();
+        // Consider the case where initially false, before toggling, need to check if object is detected
+        if (!buttonState && collisionDetected && objToMove != null) {
+            tapButtonController.SetOnHold(); // Update UI to onhold
+            buttonState = !buttonState; // Toggle button state
+            MoveObject();
+        }
+        else if (buttonState && placementPoseIsValid && moving) {
+            bool emptySpace = CheckSpace();
+            if (emptySpace) {
+                tapButtonController.ReleaseOnHold(); // Reset UI
+                buttonState = !buttonState; // Toggle button state
+                PlaceObject();
             }
-            else
-            {
-                PlaceSelectedObject();
-            }
-        }        
+        }     
     }
 
     private void Update()
     {
-        UpdatePlacementPose();
         UpdatePlacementIndicator();
-
-        if (isObjectSelected)
-        {
-            MoveSelectedObject();
-        }
+        UpdatePlacementPose();
+        UpdateCollisionStatus();
     }
 
     void UpdatePlacementPose()
@@ -63,59 +68,53 @@ public class ARTapToMoveObject : MonoBehaviour
 
     void UpdatePlacementIndicator()
     {
-        placementIndicator.SetActive(placementPoseIsValid);
-        if (placementPoseIsValid)
+        var screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f)); 
+        var hits = new List<ARRaycastHit>();
+        raycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
+
+        if (hits.Count > 0)
         {
+            placementPose = hits[0].pose;
+            placementIndicator.SetActive(true);
             placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
         }
+        else
+        {
+            placementIndicator.SetActive(false);
+        }
     }
 
-    void SelectObject()
+    void UpdateCollisionStatus()
     {
-        // Raycast to detect objects under the placement indicator
-        RaycastHit hit;
-        if (Physics.Raycast(placementPose.position, Vector3.down, out hit))
-        {
-            GameObject hitObject = hit.collider.gameObject;
+        collisionDetected = false; // Reset collision status
 
-            // Check if the hit object is selectable
-            if (hitObject.CompareTag("ARObject"))
+        // Perform a raycast from the placement indicator upwards to detect objects
+        if (Physics.Raycast(placementPose.position - Vector3.up * 5.0f, Vector3.up, out RaycastHit hit, Mathf.Infinity))
+        {
+            if (hit.collider.CompareTag("ARObject"))
             {
-                selectedObject = hitObject;
-                isObjectSelected = true;
+                collisionDetected = true;
+                objToMove = hit.collider.gameObject;
             }
+        } else {
+            objToMove = null;
         }
     }
 
-    void MoveSelectedObject()
-    {
-        if (isObjectSelected && selectedObject != null)
-        {
-            // Move the selected object along with the camera
-            selectedObject.transform.position = placementPose.position;
-            selectedObject.transform.rotation = placementPose.rotation;
-        }
+    void MoveObject() {
+        objToMove.transform.SetParent(placementIndicator.transform, true);
+        moving = true;
     }
 
-    void PlaceSelectedObject()
-    {
-        // Check if there's a valid placement location for the selected object
-        Collider[] colliders = Physics.OverlapBox(placementPose.position, selectedObject.GetComponent<Collider>().bounds.extents / 2f, Quaternion.identity);
-        bool canPlace = true;
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject != selectedObject)
-            {
-                canPlace = false;
-                break;
-            }
-        }
-
-        // If there's a valid placement location, place the object
-        if (canPlace)
-        {
-            selectedObject = null;
-            isObjectSelected = false;
-        }
+    void PlaceObject() {
+        objToMove.transform.SetParent(null); // Reset parent
+        objToMove.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
     }
+
+    bool CheckSpace() {
+        Collider[] colliders = Physics.OverlapBox(placementPose.position, objToMove.GetComponent<Collider>().bounds.extents, Quaternion.identity);
+
+        return (colliders.Length == 1);
+    }
+
 }
