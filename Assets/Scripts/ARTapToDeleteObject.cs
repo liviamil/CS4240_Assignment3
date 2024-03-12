@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Collections;
+
+using TMPro;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +18,7 @@ public class ARTapToDeleteObject : MonoBehaviour
     public GameObject placementIndicator;
     private Pose placementPose;
 
-
+    public TextMeshProUGUI debugText;
 
     private void Start()
     {
@@ -68,10 +71,23 @@ public class ARTapToDeleteObject : MonoBehaviour
             {
                 collisionDetected = true;
                 objToDelete = hit.collider.gameObject;
+                StartCoroutine(DebugMessage("Collision detected", 2f));
             }
+        }
+        else
+        {
+            StartCoroutine(DebugMessage("Collision not detected", 2f)); // Start coroutine to show debug message
         }
     }
 
+    IEnumerator DebugMessage(string message, float duration)
+    {
+        debugText.text = message; // Set the debug text
+
+        yield return new WaitForSeconds(duration); // Wait for the specified duration
+
+        debugText.text = ""; // Clear the debug text after the duration
+    }
 
     void DeleteObject()
     {
