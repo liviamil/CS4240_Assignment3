@@ -12,7 +12,6 @@ public class ARTapToMoveObject : MonoBehaviour
     public GameObject placementIndicator;
 
     private GameObject objToMove;
-    private GameObject objToSpawn;
 
     private bool isObjectSelected = false;
     private Pose placementPose;
@@ -22,6 +21,7 @@ public class ARTapToMoveObject : MonoBehaviour
     public bool buttonState = false;
 
     private bool collisionDetected = false;
+    private bool moving = false;
 
     private void Start()
     {
@@ -37,10 +37,11 @@ public class ARTapToMoveObject : MonoBehaviour
             buttonState = !buttonState; // Toggle button state
             MoveObject();
         }
-        else if (buttonState && placementPoseIsValid && objToSpawn != null) {
+        else if (buttonState && placementPoseIsValid && moving) {
             tapButtonController.ReleaseOnHold(); // Reset UI
             buttonState = !buttonState; // Toggle button state
             PlaceObject();
+            moving = false;
         }     
     }
 
@@ -100,14 +101,13 @@ public class ARTapToMoveObject : MonoBehaviour
     }
 
     void MoveObject() {
-        objToSpawn = Instantiate(objToMove);
-        // objToMove.transform.position = placementPose.position;
-        // objToMove.transform.rotation = placementPose.rotation;
-        Destroy(objToMove);
+        objToMove.transform.SetParent(placementIndicator.transform, true);
+        moving = true;
     }
 
     void PlaceObject() {
-        Instantiate(objToSpawn, placementPose.position, placementPose.rotation);    
+        objToMove.transform.SetParent(null); // Reset parent
+        objToMove.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
     }
 
 }

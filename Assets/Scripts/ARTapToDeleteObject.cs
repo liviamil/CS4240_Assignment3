@@ -15,8 +15,6 @@ public class ARTapToDeleteObject : MonoBehaviour
     public GameObject placementIndicator;
     private Pose placementPose;
 
-
-
     private void Start()
     {
         raycastManager = FindObjectOfType<ARRaycastManager>();

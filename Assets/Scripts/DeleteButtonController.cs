@@ -90,7 +90,7 @@ public class DeleteButtonController : MonoBehaviour
 
         // Debug the ARTapToDelete script
         Debug.Log("ARTapToDelete enabled: " + ArTapToDeleteScript.enabled);
-         Debug.Log("Delete button state: " + buttonState);
+        Debug.Log("Delete button state: " + buttonState);
 
     }
 }
