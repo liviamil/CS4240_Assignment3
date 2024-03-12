@@ -47,6 +47,15 @@ public class TapButtonController : MonoBehaviour
     public void OnTap()
     {
         LogButtonStates();
+        // Check if all buttons are in a disabled state
+        if (plusButtonController.buttonState == false && 
+            moveButtonController.buttonState == false && 
+            deleteButtonController.buttonState == false)
+        {
+            Debug.Log("All buttons are disabled. Cannot perform action.");
+            return; // Exit the method early
+        }
+
         switch (currentAction)
         {
             case ActionType.Plus:
