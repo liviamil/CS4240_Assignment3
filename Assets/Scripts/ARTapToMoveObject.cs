@@ -8,17 +8,22 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARTapToMoveObject : MonoBehaviour
 {
-    public GameObject placementIndicator;
     public ARRaycastManager raycastManager;
+
+    public GameObject placementIndicator;
+    
     private Pose placementPose;
     private bool placementPoseIsValid = false;
+
     private GameObject selectedObject;
+
     private bool isObjectSelected = false;
     public bool buttonState = false; // Flag to indicate if tap button is clicked
 
     private void Start()
     {
         raycastManager = FindObjectOfType<ARRaycastManager>();
+        placementIndicator.SetActive(false);
     }
 
     public void OnTapButtonClick()
@@ -63,10 +68,19 @@ public class ARTapToMoveObject : MonoBehaviour
 
     void UpdatePlacementIndicator()
     {
-        placementIndicator.SetActive(placementPoseIsValid);
-        if (placementPoseIsValid)
+        var screenCenter = Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f)); 
+        var hits = new List<ARRaycastHit>();
+        raycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
+
+        if (hits.Count > 0)
         {
+            placementPose = hits[0].pose;
+            placementIndicator.SetActive(true);
             placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
+        }
+        else
+        {
+            placementIndicator.SetActive(false);
         }
     }
 
