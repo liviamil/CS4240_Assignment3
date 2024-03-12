@@ -14,7 +14,7 @@ public class ARTapToMoveObject : MonoBehaviour
     private bool placementPoseIsValid = false;
     private GameObject selectedObject;
     private bool isObjectSelected = false;
-    public bool buttonState = false; // Flag to indicate if tap button is clicked
+    private bool tapButtonClicked = false;
 
     private void Start()
     {
@@ -23,18 +23,14 @@ public class ARTapToMoveObject : MonoBehaviour
 
     public void OnTapButtonClick()
     {
-        // if there is a valid location + we tap the tapbutton, destroy an item at that location
-        if (placementPoseIsValid)
+        // Toggle tap button clicked state
+        tapButtonClicked = !tapButtonClicked;
+
+        // If tap button is clicked again and an object is already selected, deselect it
+        if (!tapButtonClicked && isObjectSelected)
         {
-            if (!isObjectSelected)
-            {
-                SelectObject();
-            }
-            else
-            {
-                PlaceSelectedObject();
-            }
-        }        
+            DeselectObject();
+        }       
     }
 
     private void Update()
@@ -42,9 +38,17 @@ public class ARTapToMoveObject : MonoBehaviour
         UpdatePlacementPose();
         UpdatePlacementIndicator();
 
-        if (isObjectSelected)
+        // Check if tap button is clicked
+        if (tapButtonClicked)
         {
-            MoveSelectedObject();
+            if (!isObjectSelected)
+            {
+                SelectObject();
+            }
+            else
+            {
+                MoveSelectedObject();
+            }
         }
     }
 
@@ -73,10 +77,10 @@ public class ARTapToMoveObject : MonoBehaviour
     void SelectObject()
     {
         // Raycast to detect objects under the placement indicator
-        RaycastHit hit;
-        if (Physics.Raycast(placementPose.position, Vector3.down, out hit))
+        RaycastHit objectHit;
+        if (Physics.Raycast(placementPose.position - Vector3.up * 5.0f, Vector3.up, out objectHit, Mathf.Infinity))
         {
-            GameObject hitObject = hit.collider.gameObject;
+            GameObject hitObject = objectHit.collider.gameObject;
 
             // Check if the hit object is selectable
             if (hitObject.CompareTag("ARObject"))
@@ -97,25 +101,10 @@ public class ARTapToMoveObject : MonoBehaviour
         }
     }
 
-    void PlaceSelectedObject()
+    void DeselectObject()
     {
-        // Check if there's a valid placement location for the selected object
-        Collider[] colliders = Physics.OverlapBox(placementPose.position, selectedObject.GetComponent<Collider>().bounds.extents / 2f, Quaternion.identity);
-        bool canPlace = true;
-        foreach (Collider collider in colliders)
-        {
-            if (collider.gameObject != selectedObject)
-            {
-                canPlace = false;
-                break;
-            }
-        }
-
-        // If there's a valid placement location, place the object
-        if (canPlace)
-        {
-            selectedObject = null;
-            isObjectSelected = false;
-        }
+        // Deselect the object by resetting its selected state
+        selectedObject = null;
+        isObjectSelected = false;
     }
 }
