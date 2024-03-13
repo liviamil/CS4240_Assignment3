@@ -23,7 +23,7 @@ public class TapButtonController : MonoBehaviour
     public MoveButtonController moveButtonController;
     public DeleteButtonController deleteButtonController;
 
-    public Image buttonImage;
+    private Image buttonImage;
     public Sprite initialImage;
     public Sprite onHoldImage;
 
