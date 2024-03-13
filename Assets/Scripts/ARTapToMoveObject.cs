@@ -13,8 +13,9 @@ public class ARTapToMoveObject : MonoBehaviour
     private Pose placementPose;
     private bool placementPoseIsValid = false;
     private GameObject selectedObject;
-    private bool isObjectSelected = false;
+    public bool isObjectSelected = false;
     private bool tapButtonClicked = false;
+    private bool moving = false;
 
     // Define a class-level variable to store hit information
     private RaycastHit objectHit;

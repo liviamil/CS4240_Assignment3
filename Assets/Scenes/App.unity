@@ -2094,6 +2094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 808349659}
   raycastManager: {fileID: 668730091}
+  isObjectSelected: 0
 --- !u!114 &1399739516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2399,6 +2400,8 @@ MonoBehaviour:
   plusButtonController: {fileID: 288807591}
   moveButtonController: {fileID: 1399739516}
   deleteButtonController: {fileID: 1764564467}
+  selectSprite: {fileID: 21300000, guid: 147694491e1a3bb47869fcea00552762, type: 3}
+  selectActiveSprite: {fileID: 21300000, guid: f9bd3f0e5f48f0540920a1016ffcfe61, type: 3}
 --- !u!1 &1713354126
 GameObject:
   m_ObjectHideFlags: 0

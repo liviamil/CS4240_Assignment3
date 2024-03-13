@@ -23,6 +23,35 @@ public class TapButtonController : MonoBehaviour
     public MoveButtonController moveButtonController;
     public DeleteButtonController deleteButtonController;
 
+    public Sprite selectSprite;
+    public Sprite selectActiveSprite;
+
+    private Image tapButtonImage;
+
+    private void Start()
+    {
+        tapButtonImage = GetComponent<Image>();
+    }
+
+    private void Update()
+    {
+        // Check if the current action is Move and update the sprite based on isObjectSelected
+        if (currentAction == ActionType.Move && moveObjectScript != null && tapButtonImage != null)
+        {
+            if (moveObjectScript.isObjectSelected)
+            {
+                // Change sprite to select active
+                tapButtonImage.sprite = selectActiveSprite;
+            }
+            else
+            {
+                // Change sprite to select
+                tapButtonImage.sprite = selectSprite;
+            }
+        }
+    }
+
+
     public void SetActionPlus()
     {
         currentAction = ActionType.Plus;
