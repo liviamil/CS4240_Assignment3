@@ -88,9 +88,9 @@ public class DeleteButtonController : MonoBehaviour
         // Enable or disable the ArTapToDeleteScript based on the button state
         ArTapToDeleteScript.enabled = buttonState;
 
-        // Debug the ARTapToDelete script
-        Debug.Log("ARTapToDelete enabled: " + ArTapToDeleteScript.enabled);
-        Debug.Log("Delete button state: " + buttonState);
+        // // Debug the ARTapToDelete script
+        // Debug.Log("ARTapToDelete enabled: " + ArTapToDeleteScript.enabled);
+        // Debug.Log("Delete button state: " + buttonState);
 
     }
 }
