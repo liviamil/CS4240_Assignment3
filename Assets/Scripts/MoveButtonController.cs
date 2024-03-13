@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MoveButtonController : MonoBehaviour
 {
+    public ARTapToMoveObject ARTapToMoveScript;
+    
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
 
@@ -16,6 +18,8 @@ public class MoveButtonController : MonoBehaviour
     void Start()
     {
         activeMoveImage = GetComponent<Image>();
+
+        ARTapToMoveScript.enabled = false;
     }
 
     public void OnMoveButtonClick()
@@ -79,6 +83,6 @@ public class MoveButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ARTapToMoveScript.enabled = buttonState;
     }
 }

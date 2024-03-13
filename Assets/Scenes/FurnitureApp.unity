@@ -1010,7 +1010,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 808349660}
-  - component: {fileID: 808349661}
   m_Layer: 0
   m_Name: PlacementIndicator
   m_TagString: Untagged
@@ -1034,19 +1033,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &808349661
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808349659}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 2, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &885362080
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,8 +2092,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c207864f9633f6b4382bb64a7c863bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementIndicator: {fileID: 808349659}
   raycastManager: {fileID: 668730091}
+  placementIndicator: {fileID: 808349659}
+  tapButtonController: {fileID: 1593190595}
   buttonState: 0
 --- !u!114 &1399739516
 MonoBehaviour:
@@ -2121,6 +2108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c764bca4add4a144b8ffbb9b1c9ba11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ARTapToMoveScript: {fileID: 1399739515}
   newImage: {fileID: 21300000, guid: 7fe49b44a002d5a44ba6df8ea35a66ce, type: 3}
   originalImage: {fileID: 21300000, guid: 728c3124694e2cc4ea88ee556cae2c54, type: 3}
   buttonState: 0
@@ -2413,6 +2401,10 @@ MonoBehaviour:
   plusButtonController: {fileID: 288807591}
   moveButtonController: {fileID: 1399739516}
   deleteButtonController: {fileID: 1764564467}
+  buttonImage: {fileID: 0}
+  initialImage: {fileID: 21300000, guid: 147694491e1a3bb47869fcea00552762, type: 3}
+  onHoldImage: {fileID: 21300000, guid: 8ee589789306e45d2bd9399741ee48b8, type: 3}
+  buttonState: 0
 --- !u!1 &1713354126
 GameObject:
   m_ObjectHideFlags: 0

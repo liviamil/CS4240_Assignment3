@@ -23,6 +23,25 @@ public class TapButtonController : MonoBehaviour
     public MoveButtonController moveButtonController;
     public DeleteButtonController deleteButtonController;
 
+    public Image buttonImage;
+    public Sprite initialImage;
+    public Sprite onHoldImage;
+
+    public bool buttonState;
+
+    void Start() {
+        buttonImage = GetComponent<Image>();
+        initialImage = buttonImage.sprite;
+    }
+
+    public void SetOnHold() {
+        buttonImage.sprite = onHoldImage;
+    }
+
+    public void ReleaseOnHold() {
+        buttonImage.sprite = initialImage;
+    }
+    
     public void SetActionPlus()
     {
         currentAction = ActionType.Plus;
