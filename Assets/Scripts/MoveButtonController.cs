@@ -86,9 +86,5 @@ public class MoveButtonController : MonoBehaviour
     {
         // Enable or disable the ArTapToMoveScript based on the button state
         ArTapToMoveScript.enabled = buttonState;
-
-        // Debug the ARTapToPlace script
-        Debug.Log("ARTapToMove enabled: " + ArTapToMoveScript.enabled);
-        Debug.Log("Move button state: " + buttonState);
     }
 }

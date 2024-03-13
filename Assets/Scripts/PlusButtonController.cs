@@ -102,10 +102,5 @@ public class PlusButtonController : MonoBehaviour
 
         // Enable or disable the ArTapToPlaceScript based on the button state
         ArTapToPlaceScript.enabled = buttonState;
-
-        // Debug the ARTapToPlace script
-        Debug.Log("ARTapToPlace enabled: " + ArTapToPlaceScript.enabled);
-        Debug.Log("Plus button state: " + buttonState);
- 
     }
 }
