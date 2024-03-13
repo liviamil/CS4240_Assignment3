@@ -26,27 +26,36 @@ public class TapButtonController : MonoBehaviour
     public void SetActionPlus()
     {
         currentAction = ActionType.Plus;
-        LogButtonStates();
+        // LogButtonStates();
         Debug.Log("Action set to Plus");
     }
 
     public void SetActionMove()
     {
         currentAction = ActionType.Move;
-        LogButtonStates();
+        // LogButtonStates();
         Debug.Log("Action set to Move");
     }
 
     public void SetActionDelete()
     {
         currentAction = ActionType.Delete;
-        LogButtonStates();
+        // LogButtonStates();
         Debug.Log("Action set to Delete");
     }
 
     public void OnTap()
     {
-        LogButtonStates();
+        // LogButtonStates();
+        // Check if all buttons are in a disabled state
+        if (plusButtonController.buttonState == false && 
+            moveButtonController.buttonState == false && 
+            deleteButtonController.buttonState == false)
+        {
+            Debug.Log("All buttons are disabled. Cannot perform action.");
+            return; // Exit the method early
+        }
+
         switch (currentAction)
         {
             case ActionType.Plus:
@@ -76,12 +85,12 @@ public class TapButtonController : MonoBehaviour
         }
     }
 
-    private void LogButtonStates()
-    {
-        string logMessage = "Button States: " +
-                            "\nPlus Button State: " + plusButtonController.buttonState +
-                            "\nMove Button State: " + moveButtonController.buttonState +
-                            "\nDelete Button State: " + deleteButtonController.buttonState;
-        Debug.Log(logMessage);
-    }
+    // private void LogButtonStates()
+    // {
+    //     string logMessage = "Button States: " +
+    //                         "\nPlus Button State: " + plusButtonController.buttonState +
+    //                         "\nMove Button State: " + moveButtonController.buttonState +
+    //                         "\nDelete Button State: " + deleteButtonController.buttonState;
+    //     Debug.Log(logMessage);
+    // }
 }

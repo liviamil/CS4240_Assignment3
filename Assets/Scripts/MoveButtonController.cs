@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class MoveButtonController : MonoBehaviour
 {
+    // Reference to the script you want to enable/disable
+    public ARTapToMoveObject ArTapToMoveScript;
+
     public Sprite newImage; // New image for Button
     public Sprite originalImage; // Original image for Button
 
@@ -16,6 +19,8 @@ public class MoveButtonController : MonoBehaviour
     void Start()
     {
         activeMoveImage = GetComponent<Image>();
+        // Disable the ArTapToMoveScript initially
+        ArTapToMoveScript.enabled = false;
     }
 
     public void OnMoveButtonClick()
@@ -79,6 +84,7 @@ public class MoveButtonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Enable or disable the ArTapToMoveScript based on the button state
+        ArTapToMoveScript.enabled = buttonState;
     }
 }
