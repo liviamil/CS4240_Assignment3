@@ -50,15 +50,17 @@ public class ARTapToPlaceObject : MonoBehaviour
         {
             PlacementPose = hits[0].pose;
             // Check for collisions with existing objects
-            Collider[] colliders = Physics.OverlapBox(PlacementPose.position, objToSpawn.GetComponent<BoxCollider>().size / 2f, Quaternion.identity);
-            foreach (Collider collider in colliders)
-            {
-                if (collider.gameObject.CompareTag("ARObject"))
-                {
-                    placementPoseIsValid = false;
-                    break;
-                }
-            }
+            // Collider[] colliders = Physics.OverlapBox(PlacementPose.position, objToSpawn.GetComponent<BoxCollider>().size / 2f, Quaternion.identity);
+            // foreach (Collider collider in colliders)
+            // {
+            //     if (collider.gameObject.CompareTag("ARObject"))
+            //     {
+            //         placementPoseIsValid = false;
+            //         break;
+            //     }
+            // }
+            Collider[] colliders = Physics.OverlapBox(placementPose.position, objToMove.GetComponent<Collider>().bounds.extents, Quaternion.identity);
+            placementPoseIsValid = (colliders.Length == 1);
 
         }
     }
